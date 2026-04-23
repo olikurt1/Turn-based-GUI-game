@@ -8,7 +8,7 @@ public class Game{
         System.out.println("Enter Username: ");
         String userName = input.nextLine();
         //setting initial userHealth to 0 before setting to corresponding value 
-        Player player = new Player(userName, 0 );
+        Player player = new Player(userName, 100 );
         
         String difficulty = input.nextLine();
 

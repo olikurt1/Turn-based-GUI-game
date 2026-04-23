@@ -7,7 +7,7 @@ public abstract class Enemy{
         this.health = health;
     }
 
-    public abstract void attack();
+    public abstract void attack(Player player);
 
     public String getName(){
         return name;
