@@ -1,12 +1,12 @@
 import java.util.Scanner;
 
 public class Game{
+    
     static void gameStart(){
         Scanner input = new Scanner(System.in);
         System.out.println("Welcome to the Duel");
         System.out.println("Enter Username: ");
         String userName = input.nextLine();
-        input.nextLine();
         //setting initial userHealth to 0 before setting to corresponding value 
         Player player = new Player(userName, 0 );
         
@@ -23,5 +23,6 @@ public class Game{
                 player.setUserHealth(50);
             }
         }
-    }
+        input.close();
+    } 
 }
