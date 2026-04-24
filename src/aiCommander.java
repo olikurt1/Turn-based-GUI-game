@@ -1,10 +1,10 @@
 public class aiCommander extends Enemy{
     public aiCommander(){
-        super("Commander", 60);
+        super("Commander", 60,30);
     }
     public void attack(Player player){
-        player.setUserHealth(player.getUserHealth()-30);
-        System.out.println("Commander attacked you for 30 damage");
+        player.setUserHealth((int)(player.getUserHealth()-baseDamage));
+        System.out.printf("Commander attacked you for %f damage\n", baseDamage);
         
     }
 }

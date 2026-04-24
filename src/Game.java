@@ -14,6 +14,10 @@ public class Game{
         return instance;
     }
 
+    public int getDifficulty(){
+        return difficulty;
+    }
+
     
     static void gameStart(){
         Scanner input = new Scanner(System.in);
@@ -27,11 +31,11 @@ public class Game{
         int difficulty = input.nextInt();
 
         switch(difficulty){
-            case 1-> {
+            case 1 -> {
                 System.out.println("You have chosen easy.");
                 player.setUserHealth(100);
             }
-            case 2 ->{
+            case 2 -> {
                 System.out.println("You have chosen medium.");
                 player.setUserHealth(75); 
             }

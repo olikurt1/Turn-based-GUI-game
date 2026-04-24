@@ -1,9 +1,9 @@
 public class aiSoldier extends Enemy{
     public aiSoldier(){
-        super("Soldier", 30);
+        super("Soldier", 30, 15);
     }
     public void attack(Player player){
-        player.setUserHealth(player.getUserHealth()-15);
-        System.out.println("Solider attacked you dealing 15 damage.");
+        player.setUserHealth((int)(player.getUserHealth()-baseDamage));
+        System.out.printf("Solider attacked you dealing %f damage\n.", baseDamage);
     }
 }
