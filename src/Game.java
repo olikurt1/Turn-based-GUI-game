@@ -24,7 +24,7 @@ public class Game{
 
     static void gameStart(){
         Scanner input = new Scanner(System.in);
-        System.out.println("Welcome to the Duel");
+        System.out.println("Welcome to the future");
         System.out.println("Enter Username: ");
         String userName = input.nextLine();
         //setting initial userHealth to 0 before setting to corresponding value 
