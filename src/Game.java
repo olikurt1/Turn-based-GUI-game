@@ -17,8 +17,11 @@ public class Game{
     public int getDifficulty(){
         return difficulty;
     }
+    public void setDifficulty(int difficulty){
+        this.difficulty = difficulty;
+    }
 
-    
+
     static void gameStart(){
         Scanner input = new Scanner(System.in);
         System.out.println("Welcome to the Duel");
@@ -29,19 +32,23 @@ public class Game{
         
         System.out.println("Enter desired difficulty: 1. Easy, 2. Medium, 3. Hard: ");
         int difficulty = input.nextInt();
+        input.nextLine();
 
         switch(difficulty){
             case 1 -> {
                 System.out.println("You have chosen easy.");
                 player.setUserHealth(100);
+                Game.getInstance().setDifficulty(1);
             }
             case 2 -> {
                 System.out.println("You have chosen medium.");
                 player.setUserHealth(75); 
+                Game.getInstance().setDifficulty(2);
             }
             case 3 -> {
                 System.out.println("You have chosen hard.");
                 player.setUserHealth(50);
+                Game.getInstance().setDifficulty(3);
             }
         }
         input.close();
