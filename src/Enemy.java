@@ -21,9 +21,6 @@ public abstract class Enemy{
                 this.baseDamage = baseDamage*1.7;
             }
         }
-        this.health = health;
-        this.baseDamage = baseDamage;
-        
     }
 
     public abstract void attack(Player player);
