@@ -1,3 +1,3 @@
-public class Room{
-    
+public abstract class Room{
+    protected String roomType;
 }

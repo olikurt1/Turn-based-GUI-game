@@ -1,10 +1,12 @@
 public class Player{
     private String userName;
     private int userHealth;
+    private boolean userLifeStatus;
 
-    public Player(String userName, int userHealth){
+    public Player(String userName, int userHealth, boolean userLifeStatus){
         this.userName = userName;
         this.userHealth = userHealth;
+        this.userLifeStatus = userLifeStatus;
     }
     
     public String getUserName(){
@@ -19,6 +21,13 @@ public class Player{
     }
     public void setUserHealth(int userHealth){
         this.userHealth = userHealth;
+    }
+
+    public boolean getUserLifeStatus(){
+        return userLifeStatus;
+    }
+    public void setUserLifeStatus(boolean userLifeStatus){
+        this.userLifeStatus = userLifeStatus;
     }
 
 

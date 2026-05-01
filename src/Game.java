@@ -28,29 +28,45 @@ public class Game{
         System.out.println("Enter Username: ");
         String userName = input.nextLine();
         //setting initial userHealth to 0 before setting to corresponding value 
-        Player player = new Player(userName, 0 );
+        Player player = new Player(userName, 100, true );
         
-        System.out.println("Enter desired difficulty: 1. Easy, 2. Medium, 3. Hard: ");
-        int difficulty = input.nextInt();
-        input.nextLine();
+        boolean diffChoiceCorrect = false;
+        while(diffChoiceCorrect == false){
+            
+            System.out.println("Enter desired difficulty: 1. Easy, 2. Medium, 3. Hard: ");
+            int difficulty = input.nextInt();
+            input.nextLine();
 
-        switch(difficulty){
-            case 1 -> {
-                System.out.println("You have chosen easy.");
-                player.setUserHealth(100);
-                Game.getInstance().setDifficulty(1);
+            switch(difficulty){
+                case 1 -> {
+                    System.out.println("You have chosen easy.");
+                    diffChoiceCorrect = true;
+                    player.setUserHealth(100);
+                    Game.getInstance().setDifficulty(1);
+                }
+                case 2 -> {
+                    System.out.println("You have chosen medium.");
+                    diffChoiceCorrect = true;
+                    player.setUserHealth(75); 
+                    Game.getInstance().setDifficulty(2);
+                }
+                case 3 -> {
+                    System.out.println("You have chosen hard.");
+                    diffChoiceCorrect = true;
+                    player.setUserHealth(50);
+                    Game.getInstance().setDifficulty(3);
+                }
+                default -> throw new IllegalArgumentException("Invalid number, does not adhere difficulty choice.");
             }
-            case 2 -> {
-                System.out.println("You have chosen medium.");
-                player.setUserHealth(75); 
-                Game.getInstance().setDifficulty(2);
-            }
-            case 3 -> {
-                System.out.println("You have chosen hard.");
-                player.setUserHealth(50);
-                Game.getInstance().setDifficulty(3);
-            }
-        }
+
+        } 
+
         input.close();
+    }
+    static void gameLoad(Player player){
+        boolean notDead = player.getUserLifeStatus();
+        while (notDead){
+            
+        }
     } 
 }
