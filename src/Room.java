@@ -10,4 +10,6 @@ public abstract class Room{
     public void setRoomType(String roomType){
         this.roomType = roomType;
     }
+
+    public abstract void playerEnter(Player player);
 }

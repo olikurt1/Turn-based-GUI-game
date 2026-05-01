@@ -64,9 +64,8 @@ public class Game{
         input.close();
     }
     static void gameLoad(Player player){
-        boolean notDead = player.getUserLifeStatus();
-        while (notDead){
-            
+        while (player.getUserLifeStatus()){
+            Room createCurrentRoom = RoomFactory.createRoom();
         }
     } 
 }

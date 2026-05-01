@@ -3,4 +3,8 @@ public class NeutralRoom extends Room{
         super("Neutral Room");
     }
 
+    public void playerEnter(Player player){
+        
+    }
+
 }
