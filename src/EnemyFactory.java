@@ -4,8 +4,8 @@ public class EnemyFactory{
         switch(randomEnemy){
             case 0 : return new aiDrone();
             case 1 : return new aiSoldier();
-            case 2: return new aiCommander();
-            default: throw new IllegalArgumentException("Unknown/invalid enemy:"); 
+            case 2 : return new aiCommander();
+            default : throw new IllegalArgumentException("Unknown/invalid enemy:"); 
         }
     }
 }

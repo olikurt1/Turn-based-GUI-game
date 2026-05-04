@@ -5,6 +5,7 @@ public class pauseMenu{
         System.out.println("\n===Game Paused===");
         System.out.println("1. Resume");
         System.out.println("2. Quit");
+        System.out.print(">");
 
         int choice = input.nextInt();
         switch(choice){

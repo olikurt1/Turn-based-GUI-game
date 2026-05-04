@@ -1,13 +1,12 @@
 public class FightRoom extends Room{
-    private Enemy enemy;
+    
     public FightRoom(){
         super("Fight Room");
-        this.enemy = EnemyFactory.createEnemy();
-    }
-    public Enemy getEnemy(){
-        return enemy;
-    }
-    public void playerEnter(Player player){
         
+    }
+    
+    public void playerEnter(Player player){
+        Enemy currentEnemy = EnemyFactory.createEnemy();    
+        currentEnemy.attack(player);
     }
 }

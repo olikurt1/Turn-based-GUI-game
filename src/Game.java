@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Game{
@@ -21,14 +22,13 @@ public class Game{
         this.difficulty = difficulty;
     }
 
-
     static void gameStart(){
         Scanner input = new Scanner(System.in);
         System.out.println("Welcome to the future");
-        System.out.println("Enter Username: ");
+        System.out.print("Enter Username: \n>");
         String userName = input.nextLine();
         //setting initial userHealth to 0 before setting to corresponding value 
-        Player player = new Player(userName, 100, true );
+        Player player = new Player(userName, 100, true, 10 );
         
         boolean diffChoiceCorrect = false;
         while(diffChoiceCorrect == false){
@@ -56,16 +56,41 @@ public class Game{
                     player.setUserHealth(50);
                     Game.getInstance().setDifficulty(3);
                 }
-                default -> throw new IllegalArgumentException("Invalid number, does not adhere difficulty choice.");
+                default -> throw new InputMismatchException("Invalid number/value, does not adhere difficulty choice.");
             }
-
-        } 
-
-        input.close();
-    }
-    static void gameLoad(Player player){
-        while (player.getUserLifeStatus()){
-            Room createCurrentRoom = RoomFactory.createRoom();
         }
-    } 
+        gameRun(player);
+
+        
+    }
+    static void gameRun(Player player){
+        int roomCount = 1;
+        while (player.getUserLifeStatus()){
+            Scanner input = new Scanner(System.in);
+            
+            System.out.printf("You have entered room %s.\n",roomCount);
+            Room currentRoom = RoomFactory.createRoom();
+            currentRoom.playerEnter(player);
+            
+            System.out.print("You have exited the room, What would you like to do?: \np: Pause\nc: Continue\n>");
+            boolean validExitChoice = false;
+            while(validExitChoice == false){
+                String roomExitChoice = input.nextLine();
+
+                if(roomExitChoice.toLowerCase().equals("p")){
+                    pauseMenu.show();
+                    validExitChoice = true;
+                }
+                else if(roomExitChoice.toLowerCase().equals("c")){
+                    validExitChoice = true;
+                    continue;  
+                }
+                else{
+                    System.out.print("Invalid choice try again\n>");
+                }
+            }
+            roomCount += 1;
+        }
+    }
+    
 }
