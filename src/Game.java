@@ -28,7 +28,7 @@ public class Game{
         System.out.print("Enter Username: \n>");
         String userName = input.nextLine();
         //setting initial userHealth to 0 before setting to corresponding value 
-        Player player = new Player(userName, 100, true, 10, null );
+        Player player = new Player(userName, 100, true, 10, new Melee());
         
         boolean diffChoiceCorrect = false;
         while(diffChoiceCorrect == false){
