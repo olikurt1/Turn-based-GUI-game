@@ -2,6 +2,7 @@ public abstract class Enemy{
     protected String name;
     protected double health;
     protected double baseDamage;
+    protected Weapon enemyWeapon;
     
 
     public Enemy(String name, double health, double baseDamage){
@@ -21,12 +22,17 @@ public abstract class Enemy{
                 this.baseDamage = baseDamage*1.7;
             }
         }
+        this.enemyWeapon = WeaponFactory.createWeapon();
     }
 
     public abstract void attack(Player player);
 
     public String getName(){
         return name;
+    }
+
+    public Weapon getEnemyWeapon(){
+        return enemyWeapon;
     }
 }
 
