@@ -51,15 +51,24 @@ public class Player{
     public boolean hasWeapon(){
         return playerWeapon != null;
     }
-    void playerChoiceFight(Enemy e, Player p){
+    void playerChoiceFight(Enemy e){
         Scanner input = new Scanner(System.in);
         System.out.println("Choose action: \n1.Attack\n2.Dodge");
         int fightChoice = input.nextInt();
         input.nextLine();
+
+        //initalise action to null before choice
+        CombatAction action = null;
         switch(fightChoice){
-            case 1 -> playerAttack(e);
-            case 2 -> playerDodge(e, p);
+            case 1 -> action = new AttackAction();
+            case 2 -> action = new DodgeAction();
+            default -> System.out.println("Invalid action.");
         }
+        //executes action once a correct action has occurred
+        if(action != null){
+            action.execute(this, e);
+        }
+        input.close();
     }
     void playerAttack(Enemy e){
         int hitOrMiss = (int)(Math.random()*2);
@@ -71,12 +80,12 @@ public class Player{
             }
         }
     }
-    void playerDodge(Enemy e, Player p){
+    void playerDodge(Enemy e){
         int dodgeOrNo = (int)(Math.random()*2);
         switch(dodgeOrNo){
             case 0 -> System.out.println("You dodged successfully");
             case 1 ->{
-                p.setUserHealth(p.getUserHealth()-e.getEnemyWeapon().getDamage());
+                setUserHealth(getUserHealth()-e.getEnemyWeapon().getDamage());
                 System.out.println("Dodge unsuccessful, Enemy hit you for "+ e.getEnemyWeapon().getDamage()+" damage!!!");
             }
         }

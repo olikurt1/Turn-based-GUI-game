@@ -60,7 +60,7 @@ public class Game{
             }
         }
         gameRun(player);
-
+        input.close();
         
     }
     static void gameRun(Player player){
@@ -90,6 +90,7 @@ public class Game{
                     System.out.print("Invalid choice try again\n>");
                 }
             }
+            input.close();
             roomCount += 1;
         }
     }
