@@ -9,6 +9,7 @@ public class startMenu{
         boolean startMenuChoice = false;
         while(startMenuChoice == false){
             int choice = input.nextInt();
+            input.nextLine();
             switch(choice){
                 case 1 ->{
                     System.out.println("Starting Game...");
