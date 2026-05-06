@@ -1,3 +1,4 @@
+import java.util.Scanner;
 public class Player{
     private String userName;
     private int userHealth;
@@ -49,5 +50,35 @@ public class Player{
     }
     public boolean hasWeapon(){
         return playerWeapon != null;
+    }
+    void playerChoiceFight(Enemy e, Player p){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Choose action: \n1.Attack\n2.Dodge");
+        int fightChoice = input.nextInt();
+        input.nextLine();
+        switch(fightChoice){
+            case 1 -> playerAttack(e);
+            case 2 -> playerDodge(e, p);
+        }
+    }
+    void playerAttack(Enemy e){
+        int hitOrMiss = (int)(Math.random()*2);
+        switch(hitOrMiss){
+            case 0 -> System.out.println("Player missed");
+            case 1 -> {
+                e.setEnemyHealth(e.getEnemyHealth()-getPlayerWeapon().getDamage());
+                System.out.println("You damaged the enemy for "+getPlayerWeapon().getDamage()+" damage!!!");  
+            }
+        }
+    }
+    void playerDodge(Enemy e, Player p){
+        int dodgeOrNo = (int)(Math.random()*2);
+        switch(dodgeOrNo){
+            case 0 -> System.out.println("You dodged successfully");
+            case 1 ->{
+                p.setUserHealth(p.getUserHealth()-e.getEnemyWeapon().getDamage());
+                System.out.println("Dodge unsuccessful, Enemy hit you for "+ e.getEnemyWeapon().getDamage()+" damage!!!");
+            }
+        }
     }
 }

@@ -71,7 +71,8 @@ public class Game{
             System.out.printf("You have entered room %s.\n",roomCount);
             Room currentRoom = RoomFactory.createRoom();
             currentRoom.playerEnter(player);
-            
+
+             
             System.out.print("You have exited the room, What would you like to do?: \np: Pause\nc: Continue\n>");
             boolean validExitChoice = false;
             while(validExitChoice == false){

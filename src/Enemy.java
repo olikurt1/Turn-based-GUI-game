@@ -34,5 +34,12 @@ public abstract class Enemy{
     public Weapon getEnemyWeapon(){
         return enemyWeapon;
     }
+
+    public double getEnemyHealth(){
+        return health;
+    }
+    public void setEnemyHealth(double health){
+        this.health = health;
+    }
 }
 

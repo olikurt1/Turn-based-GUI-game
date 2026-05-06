@@ -7,5 +7,6 @@ public abstract class Weapon{
         this.damage = damage;
     }
     public abstract String getWeaponType();
-        
+
+    public abstract int getDamage();        
 }

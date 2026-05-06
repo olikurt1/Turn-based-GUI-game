@@ -5,4 +5,8 @@ public class Pistol extends Weapon{
     public String getWeaponType(){
         return weaponType;
     }
+    @Override
+    public int getDamage(){
+        return damage;
+    }
 }
