@@ -1,3 +1,4 @@
+import java.util.Scanner;
 public abstract class Room{
     protected String roomType;
 
@@ -11,5 +12,5 @@ public abstract class Room{
         this.roomType = roomType;
     }
 
-    public abstract void playerEnter(Player player);
+    public abstract void playerEnter(Player player, Scanner input);
 }

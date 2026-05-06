@@ -22,13 +22,12 @@ public class Game{
         this.difficulty = difficulty;
     }
 
-    static void gameStart(){
-        Scanner input = new Scanner(System.in);
+    static void gameStart(Scanner input){
         System.out.println("Welcome to the future");
         System.out.print("Enter Username: \n>");
         String userName = input.nextLine();
         //setting initial userHealth to 0 before setting to corresponding value 
-        Player player = new Player(userName, 100, true, 10, new Melee());
+        Player player = new Player(userName, 100, true, 10, new Melee(), 0);
         
         boolean diffChoiceCorrect = false;
         while(diffChoiceCorrect == false){
@@ -59,18 +58,16 @@ public class Game{
                 default -> throw new InputMismatchException("Invalid number/value, does not adhere difficulty choice.");
             }
         }
-        gameRun(player);
-        input.close();
+        gameRun(player, input);
         
     }
-    static void gameRun(Player player){
+    static void gameRun(Player player, Scanner input){
         int roomCount = 1;
         while (player.getUserLifeStatus()){
-            Scanner input = new Scanner(System.in);
             
             System.out.printf("You have entered room %s.\n",roomCount);
             Room currentRoom = RoomFactory.createRoom();
-            currentRoom.playerEnter(player);
+            currentRoom.playerEnter(player, input);
 
              
             System.out.print("You have exited the room, What would you like to do?: \np: Pause\nc: Continue\n>");
@@ -79,7 +76,7 @@ public class Game{
                 String roomExitChoice = input.nextLine();
 
                 if(roomExitChoice.toLowerCase().equals("p")){
-                    pauseMenu.show();
+                    pauseMenu.show(input);
                     validExitChoice = true;
                 }
                 else if(roomExitChoice.toLowerCase().equals("c")){
@@ -90,7 +87,6 @@ public class Game{
                     System.out.print("Invalid choice try again\n>");
                 }
             }
-            input.close();
             roomCount += 1;
         }
     }

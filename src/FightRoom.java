@@ -1,3 +1,4 @@
+import java.util.Scanner;
 public class FightRoom extends Room{
     
     public FightRoom(){
@@ -5,9 +6,11 @@ public class FightRoom extends Room{
         
     }
     
-    public void playerEnter(Player player){
+    public void playerEnter(Player player, Scanner input){
         Enemy currentEnemy = EnemyFactory.createEnemy();    
-        currentEnemy.attack(player);
-        player.playerChoiceFight(currentEnemy);
+        while(currentEnemy.getEnemyHealth()>0){
+            player.playerChoiceFight(currentEnemy, input);
+            currentEnemy.attack(player);
+        }  
     }
 }

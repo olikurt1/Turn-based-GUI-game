@@ -5,13 +5,15 @@ public class Player{
     private boolean userLifeStatus;
     private int coins;
     private Weapon playerWeapon;
+    private int Score;
 
-    public Player(String userName, int userHealth, boolean userLifeStatus, int coins, Weapon playerWeapon){
+    public Player(String userName, int userHealth, boolean userLifeStatus, int coins, Weapon playerWeapon, int Score){
         this.userName = userName;
         this.userHealth = userHealth;
         this.userLifeStatus = userLifeStatus;
         this.coins = coins;
         this.playerWeapon = playerWeapon;
+        this.Score = Score;
     }
     //userName set and get
     public String getUserName(){
@@ -48,27 +50,36 @@ public class Player{
     public void setPlayerWeapon(Weapon playerWeapon){
         this.playerWeapon = playerWeapon;
     }
-    public boolean hasWeapon(){
-        return playerWeapon != null;
-    }
-    void playerChoiceFight(Enemy e){
-        Scanner input = new Scanner(System.in);
+    
+    void playerChoiceFight(Enemy e, Scanner input){
         System.out.println("Choose action: \n1.Attack\n2.Dodge");
         int fightChoice = input.nextInt();
         input.nextLine();
 
         //initalise action to null before choice
         CombatAction action = null;
-        switch(fightChoice){
-            case 1 -> action = new AttackAction();
-            case 2 -> action = new DodgeAction();
-            default -> System.out.println("Invalid action.");
+        boolean fightChoiceCheck = false;
+        while(fightChoiceCheck == false){
+            switch(fightChoice){
+                case 1 -> {
+                    fightChoiceCheck = true;
+                    action = new AttackAction();
+                }
+                case 2 -> {
+                    fightChoiceCheck = true;
+                    action = new DodgeAction();
+                }
+                default -> {
+                    if(fightChoice >2 || fightChoice < 1){
+                        System.out.println("Choice out of bounds.");
+                    }
+                }
+            }
         }
         //executes action once a correct action has occurred
         if(action != null){
             action.execute(this, e);
         }
-        input.close();
     }
     void playerAttack(Enemy e){
         int hitOrMiss = (int)(Math.random()*2);
@@ -89,5 +100,12 @@ public class Player{
                 System.out.println("Dodge unsuccessful, Enemy hit you for "+ e.getEnemyWeapon().getDamage()+" damage!!!");
             }
         }
+    }
+    //setter and getter for player score
+    public int getPlayerScore(){
+        return this.Score;
+    }
+    public void setPlayerScore(int Score){
+        this.Score = Score;
     }
 }

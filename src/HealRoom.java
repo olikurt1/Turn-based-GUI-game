@@ -1,8 +1,9 @@
+import java.util.Scanner;
 public class HealRoom extends Room{
     public HealRoom(){
         super("Heal Room");
     }
-    public void playerEnter(Player player){
+    public void playerEnter(Player player, Scanner input){
         if(player.getUserHealth()==100){
             System.out.println("You are full health.");
         }

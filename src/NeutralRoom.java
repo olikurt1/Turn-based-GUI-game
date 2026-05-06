@@ -1,9 +1,10 @@
+import java.util.Scanner;
 public class NeutralRoom extends Room{
     public NeutralRoom(){
         super("Neutral Room");
     }
 
-    public void playerEnter(Player player){   
+    public void playerEnter(Player player, Scanner input){   
     }
 
 }
