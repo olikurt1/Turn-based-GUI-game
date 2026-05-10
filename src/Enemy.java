@@ -1,26 +1,26 @@
 public abstract class Enemy{
     protected String name;
     protected double health;
-    protected double baseDamage;
+    protected double damagePlacehold;
     protected Weapon enemyWeapon;
     
 
-    public Enemy(String name, double health, double baseDamage){
+    public Enemy(String name, double health, double damagePlacehold){
         int difficulty = Game.getInstance().getDifficulty();
         this.enemyWeapon = WeaponFactory.createWeapon();
         this.name = name;
         switch(difficulty){
             case 1 ->{
-                this.health = health*0.7;
-                this.baseDamage = enemyWeapon.getDamage()*0.7;
+                this.health = health*0.5;
+                this.damagePlacehold = enemyWeapon.getDamage()*0.5;
             }
             case 2 ->{
-                this.health = health*1.2;
-                this.baseDamage = enemyWeapon.getDamage()*1.2;
+                this.health = health;
+                this.damagePlacehold = enemyWeapon.getDamage();
             }
             case 3 ->{
-                this.health = health*1.7;
-                this.baseDamage = enemyWeapon.getDamage()*1.7;
+                this.health = health*1.5;
+                this.damagePlacehold = enemyWeapon.getDamage()*1.5;
             }
         }
         

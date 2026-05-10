@@ -40,7 +40,7 @@ public class Player{
     public int getCoinAmount(){
         return coins;
     }
-    public void setCointAmount(int coins){
+    public void setCoinAmount(int coins){
         this.coins = coins;
     }
     //weapon setter getter and if has checker
@@ -96,8 +96,7 @@ public class Player{
         switch(dodgeOrNo){
             case 0 -> System.out.println("You dodged successfully");
             case 1 ->{
-                setUserHealth(getUserHealth()-e.getEnemyWeapon().getDamage());
-                System.out.println("Dodge unsuccessful, Enemy hit you for "+ e.getEnemyWeapon().getDamage()+" damage!!!");
+                e.attack(this);
             }
         }
     }

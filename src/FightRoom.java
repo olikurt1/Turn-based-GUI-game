@@ -11,6 +11,7 @@ public class FightRoom extends Room{
         while(currentEnemy.getEnemyHealth()>0){
             player.playerChoiceFight(currentEnemy, input);
             currentEnemy.attack(player);
-        }  
+        } 
+        player.setCoinAmount(player.getCoinAmount()+1); 
     }
 }

@@ -65,8 +65,9 @@ public class Game{
         int roomCount = 1;
         while (player.getUserLifeStatus()){
             
-            System.out.printf("You have entered room %s.\n",roomCount);
             Room currentRoom = RoomFactory.createRoom();
+            System.out.printf("Room %s, You have entered a %s.\n",roomCount, currentRoom.getRoomType());
+            
             currentRoom.playerEnter(player, input);
 
              

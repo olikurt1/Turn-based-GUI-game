@@ -1,12 +1,12 @@
 public class aiDrone extends Enemy{
     public aiDrone(){
-        super("Drone", 15, 10);
+        super("Drone", 15, 0);
 
     }
     public void attack(Player player){
         System.out.println("<>");
         System.out.println("/\\");
-        player.setUserHealth((int)(player.getUserHealth()-baseDamage));
-        System.out.printf("Drone has attacked you for %f damage.\n", baseDamage);
+        player.setUserHealth((int)(player.getUserHealth()-damagePlacehold));
+        System.out.printf("Drone has attacked you for %f damage.\n", damagePlacehold);
     }
 }

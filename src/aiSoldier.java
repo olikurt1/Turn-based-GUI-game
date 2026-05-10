@@ -1,13 +1,14 @@
 public class aiSoldier extends Enemy{
     public aiSoldier(){
-        super("Soldier", 30, 15);
+        super("Soldier", 30, 0);
     }
     public void attack(Player player){
         System.out.println(" /\\ ");
         System.out.println("[::]");
         System.out.println("/||\\");
         System.out.println(" /\\ ");
-        player.setUserHealth((int)(player.getUserHealth()-baseDamage));
-        System.out.printf("Solider attacked you dealing %f damage.\n", baseDamage);
+        player.setUserHealth((int)(player.getUserHealth()-damagePlacehold));
+        System.out.printf("Soldier attacked you for %s damage!!!\n", damagePlacehold);
+        ;
     }
 }
