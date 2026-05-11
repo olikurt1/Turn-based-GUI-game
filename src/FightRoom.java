@@ -12,6 +12,7 @@ public class FightRoom extends Room{
             player.playerChoiceFight(currentEnemy, input);
             currentEnemy.attack(player);
         } 
+        System.out.println("You have defeated the enemy!!");
         player.setCoinAmount(player.getCoinAmount()+1); 
     }
 }

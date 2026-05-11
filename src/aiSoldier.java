@@ -8,7 +8,7 @@ public class aiSoldier extends Enemy{
         System.out.println("/||\\");
         System.out.println(" /\\ ");
         player.setUserHealth((int)(player.getUserHealth()-damagePlacehold));
-        System.out.printf("Soldier attacked you for %s damage!!!\n", damagePlacehold);
+        System.out.printf("Soldier attacked you for with a %s for %f damage!!!\n", this.enemyWeapon, damagePlacehold);
         ;
     }
 }

@@ -9,7 +9,7 @@ public class aiCommander extends Enemy{
         System.out.println(" /||\\ ");
         System.out.println(" /  \\");
         player.setUserHealth((int)(player.getUserHealth()-damagePlacehold));
-        System.out.printf("Commander attacked you for %f damage.\n", damagePlacehold);
+        System.out.printf("Commander attacked you with a %s for %f damage.\n", this.enemyWeapon, damagePlacehold);
         
     }
 }

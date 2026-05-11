@@ -69,6 +69,7 @@ public class Game{
             System.out.printf("Room %s, You have entered a %s.\n",roomCount, currentRoom.getRoomType());
             
             currentRoom.playerEnter(player, input);
+            player.setPlayerScore(player.getPlayerScore()+1);
 
              
             System.out.print("You have exited the room, What would you like to do?: \np: Pause\nc: Continue\n>");
