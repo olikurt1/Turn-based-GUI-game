@@ -2,15 +2,13 @@ import java.util.Scanner;
 public class Player{
     private String userName;
     private int userHealth;
-    private boolean userLifeStatus;
     private int coins;
     private Weapon playerWeapon;
     private int Score;
 
-    public Player(String userName, int userHealth, boolean userLifeStatus, int coins, Weapon playerWeapon, int Score){
+    public Player(String userName, int userHealth, int coins, Weapon playerWeapon, int Score){
         this.userName = userName;
         this.userHealth = userHealth;
-        this.userLifeStatus = userLifeStatus;
         this.coins = coins;
         this.playerWeapon = playerWeapon;
         this.Score = Score;
@@ -28,13 +26,6 @@ public class Player{
     }
     public void setUserHealth(int userHealth){
         this.userHealth = userHealth;
-    }
-    // status of player alive or not getter and setter
-    public boolean getUserLifeStatus(){
-        return userLifeStatus;
-    }
-    public void setUserLifeStatus(boolean userLifeStatus){
-        this.userLifeStatus = userLifeStatus;
     }
     //coin getter and setter
     public int getCoinAmount(){

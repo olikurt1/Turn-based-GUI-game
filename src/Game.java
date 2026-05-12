@@ -27,7 +27,7 @@ public class Game{
         System.out.print("Enter Username: \n>");
         String userName = input.nextLine();
         //setting initial userHealth to 0 before setting to corresponding value 
-        Player player = new Player(userName, 100, true, 10, new Melee(), 0);
+        Player player = new Player(userName, 100, 10, new Melee(), 0);
         
         boolean diffChoiceCorrect = false;
         while(diffChoiceCorrect == false){
@@ -63,7 +63,7 @@ public class Game{
     }
     static void gameRun(Player player, Scanner input){
         int roomCount = 1;
-        while (player.getUserLifeStatus()){
+        while (player.getUserHealth() > 0){
             
             Room currentRoom = RoomFactory.createRoom();
             System.out.printf("Room %s, You have entered a %s.\n",roomCount, currentRoom.getRoomType());
