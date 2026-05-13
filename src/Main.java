@@ -1,7 +1,6 @@
-import java.util.Scanner;
 public class Main{
     public static void main(String[] args){
-        Scanner input = new Scanner(System.in);
-        startMenu.show(input);
+        startMenuGUI menu = new startMenuGUI();
+        menu.setVisible(true);
     }
 }

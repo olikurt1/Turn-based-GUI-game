@@ -22,48 +22,23 @@ public class Game{
         this.difficulty = difficulty;
     }
 
-    static void gameStart(Scanner input){
-        System.out.println("Welcome to the future");
-        System.out.print("Enter Username: \n>");
-        String userName = input.nextLine();
-        //setting initial userHealth to 0 before setting to corresponding value 
-        Player player = new Player(userName, 100, 10, new Melee(), 0);
-        
-        System.out.print("Enter desired difficulty:\n 1. Easy\n 2. Medium\n3. Hard\n> ");
-        boolean diffChoiceCorrect = false;
-        while(diffChoiceCorrect == false){
-            try{
-                int difficulty = input.nextInt();
-                input.nextLine();
+    static void gameStart(String userName, int difficulty){
+        int playerHealth = switch (difficulty){
+            case 1 -> 100;
+            case 2 -> 75;
+            case 3 -> 50;
+            default -> 100;
+        };
+        Player player = new Player(userName, playerHealth, 0, new Melee(), 0);
 
-                switch(difficulty){
-                    case 1 -> {
-                        System.out.println("You have chosen easy.");
-                        diffChoiceCorrect = true;
-                        player.setUserHealth(100);
-                        Game.getInstance().setDifficulty(1);
-                    }
-                    case 2 -> {
-                        System.out.println("You have chosen medium.");
-                        diffChoiceCorrect = true;
-                        player.setUserHealth(75); 
-                        Game.getInstance().setDifficulty(2);
-                    }
-                    case 3 -> {
-                        System.out.println("You have chosen hard.");
-                        diffChoiceCorrect = true;
-                        player.setUserHealth(50);
-                        Game.getInstance().setDifficulty(3);
-                    }
-                }
-            }
-            catch(Exception e){
-                ErrorHandler.handleInputError(e);
-            }
-        }
-        gameRun(player, input);        
+        System.out.println("Welcome, "+player.getUserName()+"!");
+        System.out.println("Difficulty: "+difficulty+ " | health: " + player.getUserHealth());
+        System.out.println("Entering first room...\n");
+
+        gameRun(player);        
     }
-    static void gameRun(Player player, Scanner input){
+    static void gameRun(Player player){
+        Scanner input = new Scanner(System.in);
         int roomCount = 1;
         while (player.getUserHealth() > 0){
             
