@@ -13,6 +13,19 @@ public class FightRoom extends Room{
             currentEnemy.attack(player);
         } 
         System.out.println("You have defeated the enemy!!");
-        player.setCoinAmount(player.getCoinAmount()+1); 
+        switch(currentEnemy.getName()){
+            case "Drone" -> {
+                player.setCoinAmount(player.getCoinAmount()+5);
+                System.out.println("You have received 5 coins.");
+            }
+            case "Solider" -> {
+                player.setCoinAmount(player.getCoinAmount()+10);
+                System.out.println("You have received 10 coins.");
+            }
+            case "Commander" -> {
+                player.setCoinAmount(player.getCoinAmount()+20);
+                System.out.println("You have received 20 coins.");
+            }
+        } 
     }
 }

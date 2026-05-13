@@ -10,7 +10,7 @@ public class HealRoom extends Room{
         }
         else{
             boolean healChoiceFunds = false;
-            System.out.println("Choose your healable!!\n1. Food for \n2. Drink");
+            System.out.print("Choose your healable!!\n1. Food for \n2. Drink\n>");
             while(healChoiceFunds == false){
                 try{
                     int playerHealChoice = input.nextInt();
@@ -35,7 +35,7 @@ public class HealRoom extends Room{
                     }    
                 }
                 catch(Exception e){
-                    System.out.println("Invalid input try again.");
+                    ErrorHandler.handleInputError(e);
                 }
             }
         }

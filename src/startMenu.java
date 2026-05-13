@@ -8,22 +8,27 @@ public class startMenu{
 
         boolean startMenuChoice = false;
         while(startMenuChoice == false){
-            int choice = input.nextInt();
-            input.nextLine();
-            switch(choice){
-                case 1 ->{
-                    System.out.println("Starting Game...");
-                    Game.gameStart(input);
-                    startMenuChoice = true;
+            try{
+                int choice = input.nextInt();
+                input.nextLine();
+                switch(choice){
+                    case 1 ->{
+                        System.out.println("Starting Game...");
+                        Game.gameStart(input);
+                        startMenuChoice = true;
+                    }
+                    case 2 ->{
+                        System.out.println("Quitting...");
+                        System.exit(0);
+                        startMenuChoice = true;
+                    }
+                    default ->{
+                        System.out.println("Invalid choice, choose again.");
+                    }
                 }
-                case 2 ->{
-                    System.out.println("Quitting...");
-                    System.exit(0);
-                    startMenuChoice = true;
-                }
-                default ->{
-                    System.out.println("Invalid choice, choose again.");
-                }
+            }
+            catch(Exception e){
+                ErrorHandler.handleInputError(e);
             }
         }
     } 

@@ -42,35 +42,39 @@ public class Player{
         this.playerWeapon = playerWeapon;
     }
     
-    void playerChoiceFight(Enemy e, Scanner input){
-        System.out.println("Choose action: \n1.Attack\n2.Dodge");
-        int fightChoice = input.nextInt();
-        input.nextLine();
-
+    void playerChoiceFight(Enemy enemy, Scanner input){
+        System.out.print("Choose action: \n1.Attack\n2.Dodge\n>");
+        
         //initalise action to null before choice
         CombatAction action = null;
         boolean fightChoiceCheck = false;
         while(fightChoiceCheck == false){
-            switch(fightChoice){
-                case 1 -> {
-                    fightChoiceCheck = true;
-                    action = new AttackAction();
-                }
-                case 2 -> {
-                    fightChoiceCheck = true;
-                    action = new DodgeAction();
-                }
-                default -> {
-                    if(fightChoice >2 || fightChoice < 1){
-                        System.out.println("Choice out of bounds.");
+            try{
+                int fightChoice = input.nextInt();
+                input.nextLine();
+                switch(fightChoice){
+                    case 1 -> {
+                        fightChoiceCheck = true;
+                        action = new AttackAction();
+                    }
+                    case 2 -> {
+                        fightChoiceCheck = true;
+                        action = new DodgeAction();
+                    }
+                    default -> {
+                        if(fightChoice >2 || fightChoice < 1){
+                            System.out.println("Choice out of bounds.");
+                        }
                     }
                 }
+            }catch(Exception e){
+                ErrorHandler.handleInputError(e);
             }
         }
-        //executes action once a correct action has occurred
+            //executes action once a correct action has occurred
         if(action != null){
-            action.execute(this, e);
-        }
+            action.execute(this, enemy);
+        }    
     }
     void playerAttack(Enemy e){
         int hitOrMiss = (int)(Math.random()*2);

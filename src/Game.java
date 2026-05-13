@@ -1,4 +1,4 @@
-import java.util.InputMismatchException;
+
 import java.util.Scanner;
 
 public class Game{
@@ -29,37 +29,39 @@ public class Game{
         //setting initial userHealth to 0 before setting to corresponding value 
         Player player = new Player(userName, 100, 10, new Melee(), 0);
         
+        System.out.print("Enter desired difficulty:\n 1. Easy\n 2. Medium\n3. Hard\n> ");
         boolean diffChoiceCorrect = false;
         while(diffChoiceCorrect == false){
-            
-            System.out.println("Enter desired difficulty: 1. Easy, 2. Medium, 3. Hard: ");
-            int difficulty = input.nextInt();
-            input.nextLine();
+            try{
+                int difficulty = input.nextInt();
+                input.nextLine();
 
-            switch(difficulty){
-                case 1 -> {
-                    System.out.println("You have chosen easy.");
-                    diffChoiceCorrect = true;
-                    player.setUserHealth(100);
-                    Game.getInstance().setDifficulty(1);
+                switch(difficulty){
+                    case 1 -> {
+                        System.out.println("You have chosen easy.");
+                        diffChoiceCorrect = true;
+                        player.setUserHealth(100);
+                        Game.getInstance().setDifficulty(1);
+                    }
+                    case 2 -> {
+                        System.out.println("You have chosen medium.");
+                        diffChoiceCorrect = true;
+                        player.setUserHealth(75); 
+                        Game.getInstance().setDifficulty(2);
+                    }
+                    case 3 -> {
+                        System.out.println("You have chosen hard.");
+                        diffChoiceCorrect = true;
+                        player.setUserHealth(50);
+                        Game.getInstance().setDifficulty(3);
+                    }
                 }
-                case 2 -> {
-                    System.out.println("You have chosen medium.");
-                    diffChoiceCorrect = true;
-                    player.setUserHealth(75); 
-                    Game.getInstance().setDifficulty(2);
-                }
-                case 3 -> {
-                    System.out.println("You have chosen hard.");
-                    diffChoiceCorrect = true;
-                    player.setUserHealth(50);
-                    Game.getInstance().setDifficulty(3);
-                }
-                default -> throw new InputMismatchException("Invalid number/value, does not adhere difficulty choice.");
+            }
+            catch(Exception e){
+                ErrorHandler.handleInputError(e);
             }
         }
-        gameRun(player, input);
-        
+        gameRun(player, input);        
     }
     static void gameRun(Player player, Scanner input){
         int roomCount = 1;
@@ -70,27 +72,30 @@ public class Game{
             
             currentRoom.playerEnter(player, input);
             player.setPlayerScore(player.getPlayerScore()+1);
-
              
             System.out.print("You have exited the room, What would you like to do?: \np: Pause\nc: Continue\n>");
             boolean validExitChoice = false;
             while(validExitChoice == false){
-                String roomExitChoice = input.nextLine();
+                try{
+                    String roomExitChoice = input.nextLine();
 
-                if(roomExitChoice.toLowerCase().equals("p")){
-                    pauseMenu.show(input);
-                    validExitChoice = true;
+                    if(roomExitChoice.toLowerCase().equals("p")){
+                        pauseMenu.show(input);
+                        validExitChoice = true;
+                    }
+                    else if(roomExitChoice.toLowerCase().equals("c")){
+                        validExitChoice = true;
+                        continue;  
+                    }
+                    else{
+                        System.out.print("Invalid choice try again\n>");
+                    }
                 }
-                else if(roomExitChoice.toLowerCase().equals("c")){
-                    validExitChoice = true;
-                    continue;  
-                }
-                else{
-                    System.out.print("Invalid choice try again\n>");
+                catch(Exception e){
+                    ErrorHandler.handleInputError(e);
                 }
             }
             roomCount += 1;
         }
-    }
-    
+    }   
 }
