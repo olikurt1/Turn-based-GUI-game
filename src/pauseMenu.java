@@ -1,3 +1,4 @@
+/* 
 import java.util.Scanner;
 public class pauseMenu{
     public static void show(Scanner input){
@@ -33,3 +34,4 @@ public class pauseMenu{
         input.close();
     }
 }
+*/

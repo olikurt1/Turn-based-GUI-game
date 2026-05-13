@@ -55,7 +55,7 @@ public class Game{
                     String roomExitChoice = input.nextLine();
 
                     if(roomExitChoice.toLowerCase().equals("p")){
-                        pauseMenu.show(input);
+                        PauseMenuGUI.display();
                         validExitChoice = true;
                     }
                     else if(roomExitChoice.toLowerCase().equals("c")){
