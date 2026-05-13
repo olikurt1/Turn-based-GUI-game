@@ -81,6 +81,7 @@ public class startMenuGUI extends JFrame{
         //create button event handling for when start game button is pressed
         startButton.addActionListener(e -> {
             String name = nameField.getText().trim();
+            //output dialog if try to play without entering username
             if(name.isEmpty()){
                 JOptionPane.showMessageDialog(this, "Please enter a username.");
                 return;

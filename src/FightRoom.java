@@ -10,7 +10,6 @@ public class FightRoom extends Room{
         Enemy currentEnemy = EnemyFactory.createEnemy();    
         while(currentEnemy.getEnemyHealth()>0){
             player.playerChoiceFight(currentEnemy, input);
-            currentEnemy.attack(player);
         } 
         System.out.println("You have defeated the enemy!!");
         switch(currentEnemy.getName()){
