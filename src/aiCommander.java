@@ -12,7 +12,7 @@ public class aiCommander extends Enemy{
         switch(chanceOfAttack){
             case 0 ->{
                 player.setUserHealth((int)(player.getUserHealth()-damagePlacehold));
-                System.out.printf(this.name+" attacked you with a %s for %0.1f damage.\n", this.enemyWeapon.getWeaponType(), damagePlacehold);
+                System.out.printf(this.name+" attacked you with a %s for %.1f damage.\n", this.enemyWeapon.getWeaponType(), damagePlacehold);
             }
             case 1 ->{
                 System.out.println(this.name+" missed, take your chance!!!");

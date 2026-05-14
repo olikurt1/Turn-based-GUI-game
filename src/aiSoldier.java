@@ -12,7 +12,7 @@ public class aiSoldier extends Enemy{
         switch(chanceOfAttack){
             case 0 -> {
             player.setUserHealth((int)(player.getUserHealth()-damagePlacehold));
-            System.out.printf(this.name+" attacked with a %s you for %0.1f damage!!!\n", this.enemyWeapon.getWeaponType(),damagePlacehold);
+            System.out.printf(this.name+" attacked with a %s you for %.1f damage!!!\n", this.enemyWeapon.getWeaponType(),damagePlacehold);
             }
             case 1 -> {
                 System.out.println(this.name+" missed, take your chance!!!");

@@ -48,28 +48,7 @@ public class Game{
             currentRoom.playerEnter(player, input);
             player.setPlayerScore(player.getPlayerScore()+1);
              
-            System.out.print("You have exited the room, What would you like to do?: \np: Pause\nc: Continue\n>");
-            boolean validExitChoice = false;
-            while(validExitChoice == false){
-                try{
-                    String roomExitChoice = input.nextLine();
-
-                    if(roomExitChoice.toLowerCase().equals("p")){
-                        PauseMenuGUI.display();
-                        validExitChoice = true;
-                    }
-                    else if(roomExitChoice.toLowerCase().equals("c")){
-                        validExitChoice = true;
-                        continue;  
-                    }
-                    else{
-                        System.out.print("Invalid choice try again\n>");
-                    }
-                }
-                catch(Exception e){
-                    ErrorHandler.handleInputError(e);
-                }
-            }
+            RoomEndGUI.display();
             roomCount += 1;
         }
     }   
