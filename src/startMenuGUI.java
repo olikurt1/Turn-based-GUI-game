@@ -2,21 +2,24 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class startMenuGUI extends JFrame{
+public class startMenuGUI extends JPanel{
     private String userName;
     private int difficulty;
+    private static startMenuGUI instance = null;
+
+    public static startMenuGUI getInstance(){
+        if(instance == null){
+            instance = new startMenuGUI();
+        } 
+        return instance;
+    }
 
     public startMenuGUI(){
-        //creating window
-        setTitle("AI Game");
-        setSize(400, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setResizable(false);
+
 
         //creating window overlay
         JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+        mainPanel.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
         mainPanel.setBackground(new Color(30, 30, 30));
 
@@ -92,20 +95,12 @@ public class startMenuGUI extends JFrame{
             if (easyButton.isSelected()) this.difficulty = 1;
             else if (mediumButton.isSelected()) this.difficulty = 2;
             else if (hardButton.isSelected()) this.difficulty = 3;
-
-            //closes the menu 
-            dispose();
-
-            //take data through to game in a new thread so that Swing thread isn't blocked for menu's
-            new Thread(() -> {
-                Game.getInstance().setDifficulty(difficulty);
-                Game.gameStart(userName, difficulty);
-            }).start();
+ 
+            Game.getInstance().gameStart(userName, difficulty);
 
         });
         //create button event handling for qutting the game button
         quitButton.addActionListener(e -> {
-            dispose();
             System.exit(0);
         });
 
@@ -124,6 +119,7 @@ public class startMenuGUI extends JFrame{
         mainPanel.add(Box.createVerticalStrut(20));
         mainPanel.add(buttonPanel);
 
-        add(mainPanel);
+        setLayout(new BorderLayout());
+        add(mainPanel, BorderLayout.CENTER);
     }
 }

@@ -2,16 +2,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.concurrent.CountDownLatch;
 
-public class RoomEndGUI extends JFrame{
-    private RoomEndGUI(CountDownLatch latch){
-        setTitle("Room End");
-        setSize(400, 400);
-        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setResizable(false);
+public class RoomEndGUI extends JPanel{
+    protected RoomEndGUI(){
+
 
         JPanel endPanel = new JPanel();
-        endPanel.setLayout(new BoxLayout(endPanel, BoxLayout.Y_AXIS));
+        endPanel.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         endPanel.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
         endPanel.setBackground(new Color(30, 30, 30));
 
@@ -40,12 +36,10 @@ public class RoomEndGUI extends JFrame{
         pauseButton.setBorderPainted(false);
 
         continueButton.addActionListener(e -> {
-            dispose();
-            latch.countDown();
+            Game.getInstance().startNextRoom();
         });
         pauseButton.addActionListener(e -> {
-            dispose();
-            PauseMenuGUI.display();
+            GameWindow.getInstance().switchTo("PAUSE");
         });
 
         buttonPanel.add(continueButton);
@@ -58,17 +52,5 @@ public class RoomEndGUI extends JFrame{
         add(endPanel);
     }
 
-    public static void display(){
-        CountDownLatch latch = new CountDownLatch(1);
-        SwingUtilities.invokeLater(() -> {
-            RoomEndGUI endGUI = new RoomEndGUI(latch);
-            endGUI.setVisible(true);
-        });
 
-        try{
-            latch.await();
-        }catch(InterruptedException e){
-            Thread.currentThread().interrupt();
-        }
-    }
 }

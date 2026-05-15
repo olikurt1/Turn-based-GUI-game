@@ -1,20 +1,22 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.concurrent.CountDownLatch;
 
 
-public class PauseMenuGUI extends JFrame{
-    private PauseMenuGUI(CountDownLatch latch){
-        //creating window
-        setTitle("Pause Menu");
-        setSize(400, 400);
-        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setResizable(false);
+public class PauseMenuGUI extends JPanel{
+    private static PauseMenuGUI instance = null;
+
+    public static PauseMenuGUI getInstance(){
+        if(instance == null){
+            instance = new PauseMenuGUI();
+        }
+        return instance;
+    }
+    protected PauseMenuGUI(){
+
 
         //creating window overlay
         JPanel pausePanel = new JPanel();
-        pausePanel.setLayout(new BoxLayout(pausePanel, BoxLayout.Y_AXIS));
+        pausePanel.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         pausePanel.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
         pausePanel.setBackground(new Color(30, 30, 30));
 
@@ -45,14 +47,11 @@ public class PauseMenuGUI extends JFrame{
         quitButton.setBorderPainted(false);
 
         resumeButton.addActionListener(e -> {
-            System.out.println("Resuming...");
-            dispose();
-            latch.countDown();
+            GameWindow.instance.switchTo("ROOM END");
         });
 
         quitButton.addActionListener(e -> {
-            dispose();
-            System.exit(0);
+            GameWindow.instance.switchTo("START");
         });
 
         buttonPanel.add(resumeButton);
@@ -62,22 +61,7 @@ public class PauseMenuGUI extends JFrame{
         pausePanel.add(Box.createVerticalStrut(30));
         pausePanel.add(buttonPanel);
 
-        add(pausePanel);
-    }
-    //function to actually show menu
-    public static void display(){
-        //synchronises thread
-        CountDownLatch latch = new CountDownLatch(1);
-        SwingUtilities.invokeLater(() -> {
-            //creates a Pause menu instance
-            PauseMenuGUI PauseGui = new PauseMenuGUI(latch);
-            PauseGui.setVisible(true);
-        });
-        //ensures exceptions are handled 
-        try{
-            latch.await();
-        }catch(InterruptedException e){
-            Thread.currentThread().interrupt();
-        }
+        setLayout(new BorderLayout());
+        add(pausePanel, BorderLayout.CENTER);
     }
 }
