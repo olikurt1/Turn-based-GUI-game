@@ -16,7 +16,7 @@ public class PauseMenuGUI extends JPanel{
 
         //creating window overlay
         JPanel pausePanel = new JPanel();
-        pausePanel.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        pausePanel.setLayout(new BoxLayout(pausePanel, BoxLayout.Y_AXIS));
         pausePanel.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
         pausePanel.setBackground(new Color(30, 30, 30));
 

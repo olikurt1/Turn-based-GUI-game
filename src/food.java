@@ -4,12 +4,8 @@ public class food extends Healable{
     }
 
     public void heal(Player player){
-        if(player.getCoinAmount() < this.cost){
-            System.out.println("Insufficient funds for healable.");
-        }
-        else{
-            player.setUserHealth(player.getUserHealth()+ this.amountToHeal);
-        }
+        player.setUserHealth(player.getUserHealth()+ this.amountToHeal);
+        player.setCoinAmount(player.getCoinAmount()-this.cost);
         
     }
     public int getFoodCost(){

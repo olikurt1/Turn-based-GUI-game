@@ -26,7 +26,7 @@ public abstract class Enemy{
         
     }
 
-    public abstract void attack(Player player);
+    public abstract String attack(Player player);
 
     public String getName(){
         return name;

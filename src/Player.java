@@ -42,58 +42,22 @@ public class Player{
         this.playerWeapon = playerWeapon;
     }
     
-    void playerChoiceFight(Enemy enemy, Scanner input){
-        System.out.print("Choose action: \n1.Attack\n2.Dodge\n>");
-        
-        //initalise action to null before choice
-        CombatAction action = null;
-        boolean fightChoiceCheck = false;
-        while(fightChoiceCheck == false){
-            try{
-                int fightChoice = input.nextInt();
-                input.nextLine();
-                switch(fightChoice){
-                    case 1 -> {
-                        fightChoiceCheck = true;
-                        action = new AttackAction();
-                    }
-                    case 2 -> {
-                        fightChoiceCheck = true;
-                        action = new DodgeAction();
-                    }
-                    default -> {
-                        if(fightChoice >2 || fightChoice < 1){
-                            System.out.println("Choice out of bounds.");
-                        }
-                    }
-                }
-            }catch(Exception e){
-                ErrorHandler.handleInputError(e);
-            }
-        }
-            //executes action once a correct action has occurred
-        if(action != null){
-            action.execute(this, enemy);
-        }    
-    }
     void playerAttack(Enemy e){
         int hitOrMiss = (int)(Math.random()*2);
         switch(hitOrMiss){
-            case 0 -> System.out.println("Player missed");
+            case 0 -> {}
             case 1 -> {
-                e.setEnemyHealth(e.getEnemyHealth()-getPlayerWeapon().getDamage());
-                System.out.println("You damaged the enemy for "+getPlayerWeapon().getDamage()+" damage!!!");  
+                e.setEnemyHealth(e.getEnemyHealth()-getPlayerWeapon().getDamage());  
             }
         }
     }
-    void playerDodge(Enemy e){
+    String playerDodge(Enemy e){
         int dodgeOrNo = (int)(Math.random()*2);
         switch(dodgeOrNo){
-            case 0 -> System.out.println("You dodged successfully");
-            case 1 ->{
-                e.attack(this);
-            }
+            case 0 -> { return "You dodged the attack!"; }
+            case 1 -> { return e.attack(this); }
         }
+        return "";
     }
     //setter and getter for player score
     public int getPlayerScore(){

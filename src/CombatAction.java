@@ -1,3 +1,3 @@
 public interface CombatAction{
-    void execute(Player player, Enemy enemy);
+    String execute(Player player, Enemy enemy);
 }

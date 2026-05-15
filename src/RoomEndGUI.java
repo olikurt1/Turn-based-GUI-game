@@ -7,7 +7,7 @@ public class RoomEndGUI extends JPanel{
 
 
         JPanel endPanel = new JPanel();
-        endPanel.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        endPanel.setLayout(new BoxLayout(endPanel, BoxLayout.Y_AXIS));
         endPanel.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
         endPanel.setBackground(new Color(30, 30, 30));
 
@@ -39,7 +39,7 @@ public class RoomEndGUI extends JPanel{
             Game.getInstance().startNextRoom();
         });
         pauseButton.addActionListener(e -> {
-            GameWindow.getInstance().switchTo("PAUSE");
+            GameWindow.instance.switchTo("PAUSE");
         });
 
         buttonPanel.add(continueButton);

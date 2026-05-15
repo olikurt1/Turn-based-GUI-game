@@ -3,19 +3,15 @@ public class aiDrone extends Enemy{
         super("Drone", 15, 0);
 
     }
-    public void attack(Player player){
+    public String attack(Player player){
         int chanceOfAttack = (int)(Math.random()*2);
-        System.out.println("<>");
-        System.out.println("/\\");
         switch(chanceOfAttack){
             case 0 -> {
                 player.setUserHealth((int)(player.getUserHealth()-damagePlacehold));
-                System.out.printf(this.name+" has attacked you with a %s for %.1f damage.\n", this.enemyWeapon.getWeaponType(), damagePlacehold);
+                return this.name+" attacked you with a "+this.enemyWeapon.getWeaponType()+" for "+String.format("%.1f", damagePlacehold)+" damage.";
             }
-            case 1 -> {
-                System.out.println(this.name+" missed, take your chance!!!");
-            }
+            case 1 -> { return this.name+" missed, take your chance!!!"; }
         }
-
+        return "";
     }
 }

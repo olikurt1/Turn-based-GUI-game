@@ -1,6 +1,3 @@
-
-import java.util.Scanner;
-
 public class Game{
     private static Game instance = null;
     private int difficulty;
@@ -31,29 +28,10 @@ public class Game{
             default -> 100;
         };
         this.player = new Player(userName, playerHealth, 0, new Melee(), 0);
-        startNextRoom();
-
-        System.out.println("Welcome, "+player.getUserName()+"!");
-        System.out.println("Difficulty: "+difficulty+ " | health: " + player.getUserHealth());
-        System.out.println("Entering first room...\n");
-
-        gameRun(player);        
+        startNextRoom();        
     }
-    static void gameRun(Player player){
-        Scanner input = new Scanner(System.in);
-        int roomCount = 1;
-        while (player.getUserHealth() > 0){
-            
-            Room currentRoom = RoomFactory.createRoom();
-            System.out.printf("Room %s, You have entered a %s.\n",roomCount, currentRoom.getRoomType());
-            
-            currentRoom.playerEnter(player, input);
-            player.setPlayerScore(player.getPlayerScore()+1);
-             
-            
-            roomCount += 1;
-        }
-    } 
+    
+ 
     //refactoring gameRun loop to accomodate switch to GUI interface
     public void startNextRoom(){
         Room currentRoom = RoomFactory.createRoom();
@@ -81,7 +59,7 @@ public class Game{
             if(name.equals("HEAL") && component instanceof HealRoomPanel){
                 return component;
             }
-            return null;
         }
+        return null;
     }
 }

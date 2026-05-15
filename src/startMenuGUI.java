@@ -19,7 +19,7 @@ public class startMenuGUI extends JPanel{
 
         //creating window overlay
         JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
         mainPanel.setBackground(new Color(30, 30, 30));
 

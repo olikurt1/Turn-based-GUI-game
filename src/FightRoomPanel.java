@@ -41,17 +41,21 @@ public class FightRoomPanel extends JPanel{
     
     private void takeTurn(CombatAction action){
         Player player = Game.getInstance().player;
-        action.execute(player, currentEnemy);
+        String playerMsg = action.execute(player, currentEnemy);
 
         if(currentEnemy.getEnemyHealth() <= 0){
             switch(currentEnemy.getName()){
                 case "Drone" -> player.setCoinAmount(player.getCoinAmount() + 5);
-                case "Solder" -> player.setCoinAmount(player.getCoinAmount() + 10);
+                case "Soldier" -> player.setCoinAmount(player.getCoinAmount() + 10);
                 case "Commander" -> player.setCoinAmount(player.getCoinAmount() + 20);
             }
             GameWindow.instance.switchTo("ROOM END");
             return;
         }
+
+        String enemyMsg = currentEnemy.attack(player);
+        messageLabel.setText(playerMsg + " | " + enemyMsg);
+
         if (player.getUserHealth() <= 0){
             GameWindow.instance.switchTo("GAME OVER");
             return;

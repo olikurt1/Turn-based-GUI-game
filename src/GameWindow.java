@@ -8,12 +8,7 @@ public class GameWindow extends JFrame{
     //singleton 
     public static GameWindow instance = null;
 
-    public static GameWindow getInstance(){
-        if(instance == null){
-            instance = new GameWindow();
-        }
-        return instance;
-    }
+
     public GameWindow(){
         instance = this;
         setTitle("AI Game");
@@ -25,6 +20,9 @@ public class GameWindow extends JFrame{
         cardPanel.add(new startMenuGUI(), "START");
         cardPanel.add(new PauseMenuGUI(), "PAUSE");
         cardPanel.add(new RoomEndGUI(), "ROOM END");
+        cardPanel.add(new FightRoomPanel(), "FIGHT");
+        cardPanel.add(new HealRoomPanel(), "HEAL");
+        cardPanel.add(new GameOverPanel(), "GAME OVER");
 
         add(cardPanel);
         switchTo("START");
