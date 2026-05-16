@@ -1,4 +1,4 @@
-import java.util.Scanner;
+
 public class FightRoom extends Room{
     
     public FightRoom(){

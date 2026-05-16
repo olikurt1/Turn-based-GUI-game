@@ -30,9 +30,13 @@ public class HealRoomPanel extends JPanel{
         }
         foodButton.addActionListener(e -> {
             Player player = Game.getInstance().player;
+            
             food f = new food();
             if(player.getCoinAmount() < f.getFoodCost()){
                 statusLabel.setText("Not enough coins for food");
+            }
+            else if(player.getUserHealth() == player.getMaxHealth()){
+                statusLabel.setText("You are full health already!");
             }
             else{
                 f.heal(player);
@@ -44,6 +48,9 @@ public class HealRoomPanel extends JPanel{
             drink d = new drink();
             if(player.getCoinAmount() < d.getDrinkCost()){
                 statusLabel.setText("Not enough coins for drink");
+            }
+            else if(player.getUserHealth() == player.getMaxHealth()){
+                statusLabel.setText("You are full health already!");
             }
             else{
                 d.heal(player);

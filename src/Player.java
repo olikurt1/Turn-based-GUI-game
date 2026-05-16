@@ -1,14 +1,16 @@
-import java.util.Scanner;
+
 public class Player{
     private String userName;
     private int userHealth;
     private int coins;
     private Weapon playerWeapon;
     private int Score;
+    private int maxHealth;
 
     public Player(String userName, int userHealth, int coins, Weapon playerWeapon, int Score){
         this.userName = userName;
         this.userHealth = userHealth;
+        this.maxHealth = userHealth;
         this.coins = coins;
         this.playerWeapon = playerWeapon;
         this.Score = Score;
@@ -41,7 +43,10 @@ public class Player{
     public void setPlayerWeapon(Weapon playerWeapon){
         this.playerWeapon = playerWeapon;
     }
-    
+    public int getMaxHealth(){
+        return maxHealth;
+    }
+
     void playerAttack(Enemy e){
         int hitOrMiss = (int)(Math.random()*2);
         switch(hitOrMiss){
