@@ -21,32 +21,32 @@ public class startMenuGUI extends JPanel{
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
-        mainPanel.setBackground(new Color(30, 30, 30));
+        mainPanel.setBackground(Color.BLACK);
 
         //creating title box
         JLabel titleLabel = new JLabel("WELCOME TO THE FUTURE");
-        titleLabel.setFont(new Font("Monospaced", Font.BOLD, 18));
+        titleLabel.setFont(new Font("SansSerif", Font.BOLD, 26));
         titleLabel.setForeground(Color.CYAN);
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         //creating name input box and field
         JLabel nameLabel = new JLabel("Enter Username:");
-        nameLabel.setForeground(Color.WHITE);
-        nameLabel.setFont(new Font("Monospaced", Font.PLAIN, 14));
+        nameLabel.setForeground(Color.CYAN);
+        nameLabel.setFont(new Font("SansSerif", Font.BOLD, 14));
         nameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JTextField nameField = new JTextField(15);
         nameField.setMaximumSize(new Dimension(250, 30));
-        nameField.setFont(new Font("Monospaced", Font.PLAIN, 14));
+        nameField.setFont(new Font("SansSerif", Font.BOLD, 14));
 
         //difficulty creating text for difficulty
         JLabel difficultyLabel = new JLabel("Select Difficulty:");
-        difficultyLabel.setForeground(Color.WHITE);
-        difficultyLabel.setFont(new Font("Monospaced", Font.PLAIN, 14));
+        difficultyLabel.setForeground(Color.CYAN);
+        difficultyLabel.setFont(new Font("SansSerif", Font.BOLD, 14));
         difficultyLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         //creating box to have difficulty text in
         JPanel difficultyPanel = new JPanel(new FlowLayout());
-        difficultyPanel.setBackground(new Color(30, 30, 30));
+        difficultyPanel.setBackground(Color.BLACK);
 
         ButtonGroup difficultyGroup = new ButtonGroup();
         JRadioButton easyButton = new JRadioButton("Easy");
@@ -54,19 +54,19 @@ public class startMenuGUI extends JPanel{
         JRadioButton hardButton = new JRadioButton("Hard");
 
         for(JRadioButton button : new JRadioButton[]{easyButton, mediumButton, hardButton}){
-            button.setForeground(Color.GREEN);
-            button.setBackground(new Color(30, 30, 30));
-            button.setFont(new Font("Monospaced", Font.PLAIN, 13));
+            button.setForeground(Color.CYAN);
+            button.setBackground(Color.BLACK);
+            button.setFont(new Font("SansSerif", Font.BOLD, 16));
             difficultyGroup.add(button);
             difficultyPanel.add(button);
         }
         easyButton.setSelected (true);
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 0));
-        buttonPanel.setBackground(new Color(30, 30, 30));
+        buttonPanel.setBackground(Color.BLACK);
 
         JButton startButton = new JButton("START GAME");
-        startButton.setFont(new Font("Monospaced", Font.BOLD, 14));
+        startButton.setFont(new Font("SansSerif", Font.BOLD, 14));
         startButton.setBackground(new Color(0, 150, 0));
         startButton.setForeground(Color.WHITE);
         startButton.setFocusPainted(false);
@@ -74,7 +74,7 @@ public class startMenuGUI extends JPanel{
         startButton.setBorderPainted(false);
 
         JButton quitButton = new JButton("QUIT");
-        quitButton.setFont(new Font("Monospaced", Font.BOLD, 14));
+        quitButton.setFont(new Font("SansSerif", Font.BOLD, 14));
         quitButton.setBackground(new Color(150, 0, 0));
         quitButton.setForeground(Color.WHITE);
         quitButton.setFocusPainted(false);
@@ -86,7 +86,7 @@ public class startMenuGUI extends JPanel{
             String name = nameField.getText().trim();
             //output dialog if try to play without entering username
             if(name.isEmpty()){
-                JOptionPane.showMessageDialog(this, "Please enter a username.");
+                JOptionPane.showMessageDialog(this, "Please enter a username to start.");
                 return;
             }
 

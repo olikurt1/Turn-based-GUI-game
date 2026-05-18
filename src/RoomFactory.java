@@ -1,10 +1,9 @@
 public class RoomFactory{
     public static Room createRoom(){
-        int randomRoom = (int)(Math.random()*3);
+        int randomRoom = (int)(Math.random()*2);
         switch(randomRoom){
-            case 0: return new NeutralRoom();
-            case 1: return new FightRoom();
-            case 2: return new HealRoom();
+            case 0: return new FightRoom();
+            case 1: return new HealRoom();
             default: throw new IllegalArgumentException("Invalid Room type.");
         }
     }

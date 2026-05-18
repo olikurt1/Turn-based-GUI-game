@@ -21,6 +21,7 @@ public class Game{
     }
 
     public void gameStart(String userName, int difficulty){
+        this.difficulty = difficulty;
         int playerHealth = switch (difficulty){
             case 1 -> 100;
             case 2 -> 75;
@@ -39,6 +40,7 @@ public class Game{
             FightRoomPanel panel = (FightRoomPanel)getPanelFor("FIGHT");
             panel.loadRoom(fightRoom);
             GameWindow.instance.switchTo("FIGHT");
+            player.setPlayerScore(player.getPlayerScore() + 1);
         }
         else if(currentRoom instanceof HealRoom healRoom){
             HealRoomPanel panel = (HealRoomPanel) getPanelFor("HEAL");
@@ -48,7 +50,7 @@ public class Game{
         else{
             GameWindow.instance.switchTo("ROOM END");
         }
-        player.setPlayerScore(player.getPlayerScore() + 1);
+        
 
     }
     private java.awt.Component getPanelFor(String name){

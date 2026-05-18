@@ -5,9 +5,13 @@ public class GameWindow extends JFrame{
     private CardLayout cardLayout = new CardLayout();
     public JPanel cardPanel =  new JPanel(cardLayout);
 
-    //singleton 
+    //singleton
     public static GameWindow instance = null;
 
+    private FightRoomPanel fightRoomPanel = new FightRoomPanel();
+    private HealRoomPanel healRoomPanel = new HealRoomPanel();
+    private RoomEndGUI roomEndPanel = new RoomEndGUI();
+    private GameOverPanel gameOverPanel = new GameOverPanel();
 
     public GameWindow(){
         instance = this;
@@ -19,15 +23,22 @@ public class GameWindow extends JFrame{
 
         cardPanel.add(new startMenuGUI(), "START");
         cardPanel.add(new PauseMenuGUI(), "PAUSE");
-        cardPanel.add(new RoomEndGUI(), "ROOM END");
-        cardPanel.add(new FightRoomPanel(), "FIGHT");
-        cardPanel.add(new HealRoomPanel(), "HEAL");
-        cardPanel.add(new GameOverPanel(), "GAME OVER");
+        cardPanel.add(roomEndPanel, "ROOM END");
+        cardPanel.add(fightRoomPanel, "FIGHT");
+        cardPanel.add(healRoomPanel, "HEAL");
+        cardPanel.add(gameOverPanel, "GAME OVER");
 
         add(cardPanel);
         switchTo("START");
     }
     public void switchTo(String scene){
+        if (!scene.equals("START") && !scene.equals("PAUSE") && Game.getInstance().player != null){
+            int score = Game.getInstance().player.getPlayerScore();
+            fightRoomPanel.setScore(score);
+            healRoomPanel.setScore(score);
+            roomEndPanel.setScore(score);
+            gameOverPanel.setScore(score);
+        }
         cardLayout.show(cardPanel, scene);
     }
 }

@@ -3,14 +3,24 @@ import java.awt.*;
 
 public class HealRoomPanel extends JPanel{
     private JLabel statusLabel= new JLabel();
+    private JLabel scoreLabel = new JLabel("Score: 0");
 
     public HealRoomPanel(){
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setBackground(new Color(30, 30, 30));
+        setBackground(Color.BLACK);
         setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
 
+        scoreLabel.setFont(new Font("SansSerif", Font.BOLD, 13));
+        scoreLabel.setForeground(Color.CYAN);
+        JPanel topRow = new JPanel(new BorderLayout());
+        topRow.setBackground(Color.BLACK);
+        topRow.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
+        topRow.add(scoreLabel, BorderLayout.EAST);
+        add(topRow);
+        add(Box.createVerticalStrut(10));
+
         JLabel title = new JLabel("HEAL ROOM");
-        title.setFont(new Font("Monospaced", Font.BOLD, 18));
+        title.setFont(new Font("SansSerif", Font.BOLD, 18));
         title.setForeground(Color.CYAN);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -20,7 +30,7 @@ public class HealRoomPanel extends JPanel{
         JButton continueButton = new JButton("CONTINUE");
 
         for(JButton button : new JButton[]{foodButton, drinkButton, continueButton}){
-            button.setFont(new Font("Monospaced", Font.BOLD, 13));
+            button.setFont(new Font("SansSerif", Font.BOLD, 13));
             button.setBackground(Color.CYAN);
             button.setForeground(Color.BLUE);
             button.setFocusPainted(false);
@@ -32,11 +42,11 @@ public class HealRoomPanel extends JPanel{
             Player player = Game.getInstance().player;
             
             food f = new food();
-            if(player.getCoinAmount() < f.getFoodCost()){
-                statusLabel.setText("Not enough coins for food");
+            if(player.getUserHealth() == player.getMaxHealth()){
+                statusLabel.setText("You are full health already");
             }
-            else if(player.getUserHealth() == player.getMaxHealth()){
-                statusLabel.setText("You are full health already!");
+            else if(player.getCoinAmount() < f.getFoodCost()){
+                statusLabel.setText("Not enough coins!");
             }
             else{
                 f.heal(player);
@@ -46,11 +56,11 @@ public class HealRoomPanel extends JPanel{
         drinkButton.addActionListener(e -> {
             Player player = Game.getInstance().player;
             drink d = new drink();
-            if(player.getCoinAmount() < d.getDrinkCost()){
-                statusLabel.setText("Not enough coins for drink");
-            }
-            else if(player.getUserHealth() == player.getMaxHealth()){
+            if(player.getUserHealth() == player.getMaxHealth()){
                 statusLabel.setText("You are full health already!");
+            }
+            else if(player.getCoinAmount() < d.getDrinkCost()){
+                statusLabel.setText("Not enough coins for drink!");
             }
             else{
                 d.heal(player);
@@ -68,6 +78,10 @@ public class HealRoomPanel extends JPanel{
         add(drinkButton);
         add(Box.createVerticalStrut(10));
         add(continueButton);
+    }
+
+    public void setScore(int score){ 
+        scoreLabel.setText("Score: " + score); 
     }
 
     public void loadRoom(HealRoom room){

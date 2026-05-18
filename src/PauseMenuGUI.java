@@ -18,20 +18,20 @@ public class PauseMenuGUI extends JPanel{
         JPanel pausePanel = new JPanel();
         pausePanel.setLayout(new BoxLayout(pausePanel, BoxLayout.Y_AXIS));
         pausePanel.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
-        pausePanel.setBackground(new Color(30, 30, 30));
+        pausePanel.setBackground(Color.BLACK);
 
         //Pause Menu Title
         JLabel titleLabel = new JLabel("PAUSE MENU");
-        titleLabel.setFont(new Font("Monospaced", Font.PLAIN, 18));
+        titleLabel.setFont(new Font("SansSerif", Font.BOLD, 18));
         titleLabel.setForeground(Color.CYAN);
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         //button "class"
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 0));
-        buttonPanel.setBackground(new Color(30, 30, 30));
+        buttonPanel.setBackground(Color.BLACK);
 
         JButton resumeButton = new JButton("RESUME");
-        resumeButton.setFont(new Font("Monospaced", Font.BOLD, 14));
+        resumeButton.setFont(new Font("SansSerif", Font.BOLD, 14));
         resumeButton.setBackground(new Color(0, 150, 0));
         resumeButton.setForeground(Color.WHITE);
         resumeButton.setFocusPainted(false);
@@ -39,7 +39,7 @@ public class PauseMenuGUI extends JPanel{
         resumeButton.setBorderPainted(false);
 
         JButton quitButton = new JButton("QUIT");
-        quitButton.setFont(new Font("Monospaced", Font.BOLD, 14));
+        quitButton.setFont(new Font("SansSerif", Font.BOLD, 14));
         quitButton.setBackground(new Color(150, 0, 0));
         quitButton.setForeground(Color.WHITE);
         quitButton.setFocusPainted(false);
