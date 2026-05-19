@@ -11,6 +11,9 @@ public class FightRoomPanel extends JPanel{
     private JLabel healthLabel = new JLabel("HP: -");
     private JLabel enemyImageLabel = new JLabel();
     private JLabel playerImageLabel = new JLabel();
+    //stores the actual images as attributes to be rescaled with 
+    private Image playerRawImage;
+    private Image enemyRawImage;
     //constructor
     public FightRoomPanel() {
         setLayout(new BorderLayout());
@@ -21,10 +24,16 @@ public class FightRoomPanel extends JPanel{
         add(enemyImageLabel, BorderLayout.WEST);
 
         //player image on right
-        ImageIcon playerRaw = new ImageIcon(getClass().getClassLoader().getResource("player.png"));
-        Image playerScaled = playerRaw.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
-        playerImageLabel.setIcon(new ImageIcon(playerScaled));
+        playerRawImage = new ImageIcon(getClass().getClassLoader().getResource("player.png")).getImage();
         add(playerImageLabel, BorderLayout.EAST);
+
+        //function using existing component listener from awt library but overriding resizing method with custom rescaleImages function
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            @Override
+            public void componentResized(java.awt.event.ComponentEvent e) {
+                rescaleImages();
+            }
+        });
 
         //center panel for buttons and messages
         JPanel centrePanel = new JPanel();
@@ -82,9 +91,8 @@ public class FightRoomPanel extends JPanel{
             default -> null;
         };
         if(imageName != null){
-            Image scaled = new ImageIcon(getClass().getClassLoader().getResource(imageName)).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
-            
-            enemyImageLabel.setIcon(new ImageIcon(scaled));
+            enemyRawImage = new ImageIcon(getClass().getClassLoader().getResource(imageName)).getImage();
+            rescaleImages();
         }
     }
     
@@ -104,7 +112,13 @@ public class FightRoomPanel extends JPanel{
 
         String enemyMsg = currentEnemy.attack(player);
         messageLabel.setText(playerMsg);
-        messageLabel.setText(enemyMsg);
+        //Thread.sleep but for swing ui to ensure messages are seen
+        javax.swing.Timer timer = new javax.swing.Timer(1000, e ->{
+            messageLabel.setText(enemyMsg);
+        });
+        timer.setRepeats(false);
+        timer.start();
+        
 
         if (player.getUserHealth() <= 0){
             GameWindow.instance.switchTo("GAME OVER");
@@ -113,13 +127,22 @@ public class FightRoomPanel extends JPanel{
 
         refresh();
     }
-
+    //updates the stats shown on screen after each turn
     private void refresh(){
         Player player = Game.getInstance().player;
         enemyLabel.setText("Enemy: "+ currentEnemy.getName());
         enemyHpLabel.setText("Enemy HP: "+ currentEnemy.getEnemyHealth());
         CoinLabel.setText("Coins: "+player.getCoinAmount());
         healthLabel.setText("HP: " + player.getUserHealth());
+    }
+    //function to change image size
+    private void rescaleImages(){
+        //fixed size for images which is set to be relative to window size
+        int size = Math.max(50, getHeight() / 3);
+        if(playerRawImage != null)
+            playerImageLabel.setIcon(new ImageIcon(playerRawImage.getScaledInstance(size, size, Image.SCALE_SMOOTH)));
+        if(enemyRawImage != null)
+            enemyImageLabel.setIcon(new ImageIcon(enemyRawImage.getScaledInstance(size, size, Image.SCALE_SMOOTH)));
     }
     private void styleButton(JButton button, Color background){
         button.setFont(new Font("SansSerif", Font.BOLD, 14));

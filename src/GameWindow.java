@@ -21,7 +21,8 @@ public class GameWindow extends JFrame{
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setResizable(false);
+        setResizable(true);
+        setExtendedState(getExtendedState() | GameWindow.MAXIMIZED_BOTH);
         //each cardPanel is one of the GUI's
         cardPanel.add(new startMenuGUI(), "START");
         cardPanel.add(new PauseMenuGUI(), "PAUSE");
