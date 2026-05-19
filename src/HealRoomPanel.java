@@ -25,6 +25,7 @@ public class HealRoomPanel extends JPanel{
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         statusLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        statusLabel.setForeground(Color.CYAN);
         JButton foodButton = new JButton("BUY FOOD (50 HP / 30 coins)");
         JButton drinkButton = new JButton("Buy DRINK(15 HP / 10 coins)");
         JButton continueButton = new JButton("CONTINUE");
@@ -68,7 +69,7 @@ public class HealRoomPanel extends JPanel{
             }
         });
         continueButton.addActionListener(e -> GameWindow.instance.switchTo("ROOM END"));
-
+        //vertical strut creates a vertical gap between each label/button
         add(title);
         add(Box.createVerticalStrut(20));
         add(statusLabel);

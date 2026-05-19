@@ -1,13 +1,14 @@
 import javax.swing.*;
 import java.awt.*;
-
+//this is the actual window that the game loads into when main runs it makes all GUI's load into one window rather than opening separate windows and separate threads
 public class GameWindow extends JFrame{
+    //cardLayout type means all GUI's load at once and stack on top of each other
     private CardLayout cardLayout = new CardLayout();
     public JPanel cardPanel =  new JPanel(cardLayout);
 
     //singleton
     public static GameWindow instance = null;
-
+    //declaring each GUI as an attribute of game window
     private FightRoomPanel fightRoomPanel = new FightRoomPanel();
     private HealRoomPanel healRoomPanel = new HealRoomPanel();
     private RoomEndGUI roomEndPanel = new RoomEndGUI();
@@ -20,7 +21,7 @@ public class GameWindow extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
-
+        //each cardPanel is one of the GUI's
         cardPanel.add(new startMenuGUI(), "START");
         cardPanel.add(new PauseMenuGUI(), "PAUSE");
         cardPanel.add(roomEndPanel, "ROOM END");

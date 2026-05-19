@@ -53,6 +53,8 @@ public class Game{
         
 
     }
+    //Classifies each panel within the GameWindow singleton as their generic type of Component, overall function is used to return a specific room panel when startNextRoom is called. It runs certain room by checking the panels name and if its generic component is definitely an instanceof that type. 
+    //Loops through the CardLayout 'deck of cards GUI's that have all loaded on each other instantly with the window 
     private java.awt.Component getPanelFor(String name){
         for (java.awt.Component component : GameWindow.instance.cardPanel.getComponents()){
             if(name.equals("FIGHT") && component instanceof FightRoomPanel){

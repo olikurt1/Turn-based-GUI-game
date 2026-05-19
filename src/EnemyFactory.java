@@ -1,3 +1,4 @@
+//factory design pattern for generating enemy randomly under the same class type
 public class EnemyFactory{
     public static Enemy createEnemy(){
         int randomEnemy = (int)(Math.random()*3);

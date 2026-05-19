@@ -9,7 +9,7 @@ public class FightRoomPanel extends JPanel{
     private Enemy currentEnemy;
     private JLabel scoreLabel = new JLabel("Score: 0");
     private JLabel healthLabel = new JLabel("HP: -");
-
+    //constructor
     public FightRoomPanel() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(Color.BLACK);
@@ -73,7 +73,8 @@ public class FightRoomPanel extends JPanel{
         }
 
         String enemyMsg = currentEnemy.attack(player);
-        messageLabel.setText(playerMsg + " | " + enemyMsg);
+        messageLabel.setText(playerMsg);
+        messageLabel.setText(enemyMsg);
 
         if (player.getUserHealth() <= 0){
             GameWindow.instance.switchTo("GAME OVER");

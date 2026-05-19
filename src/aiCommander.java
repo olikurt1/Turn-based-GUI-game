@@ -2,6 +2,7 @@ public class aiCommander extends Enemy{
     public aiCommander(){
         super("Commander", 60,0);
     }
+    //chance of damaging player and returning into message label, same for all enemy types
     public String attack(Player player){
         int chanceOfAttack = (int)(Math.random()*2);
         switch(chanceOfAttack){
@@ -11,6 +12,7 @@ public class aiCommander extends Enemy{
             }
             case 1 -> { return this.name+" missed, take your chance!!!"; }
         }
+        //base case
         return "";
     }
 }

@@ -34,7 +34,6 @@ public class GameOverPanel extends JPanel{
         menuButton.addActionListener(e -> GameWindow.instance.switchTo("START"));
 
         add(label);
-
         add(Box.createVerticalStrut(30));
         add(menuButton);
     }
