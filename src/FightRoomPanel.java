@@ -113,7 +113,7 @@ public class FightRoomPanel extends JPanel{
         String enemyMsg = currentEnemy.attack(player);
         messageLabel.setText(playerMsg);
         //Thread.sleep but for swing ui to ensure messages are seen
-        javax.swing.Timer timer = new javax.swing.Timer(1000, e ->{
+        javax.swing.Timer timer = new javax.swing.Timer(3000, e ->{
             messageLabel.setText(enemyMsg);
         });
         timer.setRepeats(false);
