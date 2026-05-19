@@ -29,7 +29,7 @@ public class PauseMenuGUI extends JPanel{
         //button "class"
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 0));
         buttonPanel.setBackground(Color.BLACK);
-
+        //styling buttons
         JButton resumeButton = new JButton("RESUME");
         resumeButton.setFont(new Font("SansSerif", Font.BOLD, 14));
         resumeButton.setBackground(new Color(0, 150, 0));
@@ -45,7 +45,7 @@ public class PauseMenuGUI extends JPanel{
         quitButton.setFocusPainted(false);
         quitButton.setOpaque(true);
         quitButton.setBorderPainted(false);
-
+        //providing functionality to the buttons
         resumeButton.addActionListener(e -> {
             GameWindow.instance.switchTo("ROOM END");
         });
@@ -53,7 +53,7 @@ public class PauseMenuGUI extends JPanel{
         quitButton.addActionListener(e -> {
             GameWindow.instance.switchTo("START");
         });
-
+        //adding labels and panels for buttons and labels
         buttonPanel.add(resumeButton);
         buttonPanel.add(quitButton);
 

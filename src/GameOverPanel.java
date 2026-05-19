@@ -8,7 +8,8 @@ public class GameOverPanel extends JPanel{
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(Color.BLACK);
         setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
-
+        
+        //styling labels
         scoreLabel.setFont(new Font("SansSerif", Font.BOLD, 13));
         scoreLabel.setForeground(Color.CYAN);
         JPanel topRow = new JPanel(new BorderLayout());
@@ -22,7 +23,7 @@ public class GameOverPanel extends JPanel{
         label.setFont(new Font("SansSerif", Font.BOLD, 24));
         label.setForeground(Color.RED);
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
-
+        //styling back to main menu button
         JButton menuButton = new JButton("MAIN MENU");
         menuButton.setFont(new Font("SansSerif", Font.BOLD, 14));
         menuButton.setBackground(Color.RED);

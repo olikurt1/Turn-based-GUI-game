@@ -6,19 +6,20 @@ public class RoomEndEnemyGUI extends JPanel{
     private JLabel scoreLabel = new JLabel("Score: 0");
 
     protected RoomEndEnemyGUI(){
-
-
         JPanel endPanel = new JPanel();
         endPanel.setLayout(new BoxLayout(endPanel, BoxLayout.Y_AXIS));
         endPanel.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
         endPanel.setBackground(Color.BLACK);
-
+        //styling buttons and labels
         JLabel endLabel = new JLabel("YOU HAVE EXITED THE ROOM CHOOSE WHAT TO DO NEXT");
         endLabel.setFont(new Font("SansSerif", Font.BOLD, 18));
         endLabel.setForeground(Color.CYAN);
         endLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JLabel informLabel = new JLabel("YOU HAVE DEFEATED THE ENEMY");
+        informLabel.setFont(new Font("SansSerif", Font.BOLD, 18));
+        informLabel.setForeground(Color.CYAN);
+        informLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 0 ));
         buttonPanel.setBackground(Color.BLACK);
@@ -49,9 +50,9 @@ public class RoomEndEnemyGUI extends JPanel{
         buttonPanel.add(continueButton);
         buttonPanel.add(pauseButton);
 
-        endPanel.add(endLabel);
-        endPanel.add(Box.createVerticalStrut(10));
         endPanel.add(informLabel);
+        endPanel.add(Box.createVerticalStrut(10));
+        endPanel.add(endLabel);
         endPanel.add(Box.createVerticalStrut(30));
         endPanel.add(buttonPanel);
 

@@ -15,8 +15,6 @@ public class startMenuGUI extends JPanel{
     }
 
     public startMenuGUI(){
-
-
         //creating window overlay
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));

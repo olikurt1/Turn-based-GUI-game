@@ -14,10 +14,10 @@ public class HealRoomPanel extends JPanel{
         setBackground(Color.BLACK);
         setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
 
-        
+        //declaring the images for healables
         drinkRawImage = new ImageIcon(getClass().getClassLoader().getResource("drink.png")).getImage();
         foodRawImage = new ImageIcon(getClass().getClassLoader().getResource("food.png")).getImage();
-
+        //listener for images to resize dynamically with window
         addComponentListener(new java.awt.event.ComponentAdapter(){
             @Override
             public void componentResized(java.awt.event.ComponentEvent e){
@@ -39,10 +39,12 @@ public class HealRoomPanel extends JPanel{
 
         statusLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         statusLabel.setForeground(Color.CYAN);
+        
         JButton foodButton = new JButton("BUY FOOD (50 HP / 30 coins)");
         JButton drinkButton = new JButton("Buy DRINK(15 HP / 10 coins)");
         JButton continueButton = new JButton("CONTINUE");
-
+        
+        //setting buttons as a for loop so does one at at a time 
         for(JButton button : new JButton[]{foodButton, drinkButton, continueButton}){
             button.setFont(new Font("SansSerif", Font.BOLD, 13));
             button.setBackground(Color.CYAN);
@@ -52,6 +54,7 @@ public class HealRoomPanel extends JPanel{
             button.setBorderPainted(false);
             button.setAlignmentX(Component.CENTER_ALIGNMENT);
         }
+        //creating button functionality for food, drink and continuing buttons
         foodButton.addActionListener(e -> {
             Player player = Game.getInstance().player;
             food f = new food();
@@ -81,7 +84,7 @@ public class HealRoomPanel extends JPanel{
             }
         });
         continueButton.addActionListener(e -> GameWindow.instance.switchTo("ROOM END"));
-
+        //center panel for button HUD
         JPanel centrePanel = new JPanel();
         centrePanel.setLayout(new BoxLayout(centrePanel, BoxLayout.Y_AXIS));
 

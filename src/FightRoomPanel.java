@@ -83,13 +83,14 @@ public class FightRoomPanel extends JPanel{
         messageLabel.setText("");
         healthLabel.setText("HP: " + Game.getInstance().player.getUserHealth());
         refresh();
-
+        //sets enemy image based on the current enemies name
         String imageName = switch(currentEnemy.getName()){
             case "Drone" -> "aiDrone.png";
             case "Soldier" -> "aiSolider.png";
             case "Commander" -> "aiCommander.png";
             default -> null;
         };
+        //sets image but checks that name isn't null first
         if(imageName != null){
             enemyRawImage = new ImageIcon(getClass().getClassLoader().getResource(imageName)).getImage();
             rescaleImages();
@@ -99,7 +100,7 @@ public class FightRoomPanel extends JPanel{
     private void takeTurn(CombatAction action){
         Player player = Game.getInstance().player;
         String playerMsg = action.execute(player, currentEnemy);
-
+        //once enemy dies provide coins based on enemy type
         if(currentEnemy.getEnemyHealth() <= 0){
             switch(currentEnemy.getName()){
                 case "Drone" -> player.setCoinAmount(player.getCoinAmount() + 5);
@@ -109,7 +110,7 @@ public class FightRoomPanel extends JPanel{
             GameWindow.instance.switchTo("ENEMY ROOM END");
             return;
         }
-
+        //stores the enemy attacking function which does its void functionality but returns the notification of event into the enemyMsg String variable
         String enemyMsg = currentEnemy.attack(player);
         messageLabel.setText(playerMsg);
         //Thread.sleep but for swing ui to ensure messages are seen
@@ -119,7 +120,7 @@ public class FightRoomPanel extends JPanel{
         timer.setRepeats(false);
         timer.start();
         
-
+        //if player dies set window scene to game over
         if (player.getUserHealth() <= 0){
             GameWindow.instance.switchTo("GAME OVER");
             return;

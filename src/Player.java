@@ -46,7 +46,7 @@ public class Player{
     public int getMaxHealth(){
         return maxHealth;
     }
-
+    //functions for player to attack or dodge
     void playerAttack(Enemy e){
         int hitOrMiss = (int)(Math.random()*2);
         switch(hitOrMiss){

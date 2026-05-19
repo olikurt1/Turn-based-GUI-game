@@ -17,6 +17,7 @@ public class GameWindow extends JFrame{
 
     public GameWindow(){
         instance = this;
+        //structuring window
         setTitle("AI Game");
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -35,7 +36,9 @@ public class GameWindow extends JFrame{
         add(cardPanel);
         switchTo("START");
     }
+    //function which allows switch between scenes
     public void switchTo(String scene){
+        //checks that scene isn't start menu or pause and that there is a player object instance
         if (!scene.equals("START") && !scene.equals("PAUSE") && Game.getInstance().player != null){
             int score = Game.getInstance().player.getPlayerScore();
             fightRoomPanel.setScore(score);
