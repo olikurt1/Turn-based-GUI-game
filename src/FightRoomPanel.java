@@ -9,11 +9,27 @@ public class FightRoomPanel extends JPanel{
     private Enemy currentEnemy;
     private JLabel scoreLabel = new JLabel("Score: 0");
     private JLabel healthLabel = new JLabel("HP: -");
+    private JLabel enemyImageLabel = new JLabel();
+    private JLabel playerImageLabel = new JLabel();
     //constructor
     public FightRoomPanel() {
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setLayout(new BorderLayout());
         setBackground(Color.BLACK);
         setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
+
+        //placing enemy image on the left 
+        add(enemyImageLabel, BorderLayout.WEST);
+
+        //player image on right
+        ImageIcon playerRaw = new ImageIcon(getClass().getClassLoader().getResource("player.png"));
+        Image playerScaled = playerRaw.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
+        playerImageLabel.setIcon(new ImageIcon(playerScaled));
+        add(playerImageLabel, BorderLayout.EAST);
+
+        //center panel for buttons and messages
+        JPanel centrePanel = new JPanel();
+        centrePanel.setLayout(new BoxLayout(centrePanel, BoxLayout.Y_AXIS));
+        centrePanel.setBackground(Color.BLACK);
 
         Font hudFont = new Font("SansSerif", Font.BOLD, 13);
         healthLabel.setFont(hudFont);
@@ -25,15 +41,15 @@ public class FightRoomPanel extends JPanel{
         topRow.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
         topRow.add(healthLabel, BorderLayout.WEST);
         topRow.add(scoreLabel, BorderLayout.EAST);
-        add(topRow);
-        add(Box.createVerticalStrut(10));
+        centrePanel.add(topRow);
+        centrePanel.add(Box.createVerticalStrut(10));
 
         for(JLabel label : new JLabel[]{enemyLabel, enemyHpLabel, CoinLabel, messageLabel}){
             label.setForeground(Color.CYAN);
             label.setFont(new Font("SansSerif", Font.BOLD, 14));
             label.setAlignmentX(Component.CENTER_ALIGNMENT);
-            add(label);
-            add(Box.createVerticalStrut(10));
+            centrePanel.add(label);
+            centrePanel.add(Box.createVerticalStrut(10));
         }
         JButton attackButton = new JButton("ATTACK");
         JButton dodgeButton = new JButton("DODGE");
@@ -47,7 +63,9 @@ public class FightRoomPanel extends JPanel{
         buttonPanel.setBackground(Color.BLACK);
         buttonPanel.add(attackButton);
         buttonPanel.add(dodgeButton);
-        add(buttonPanel);
+        centrePanel.add(buttonPanel);
+
+        add(centrePanel, BorderLayout.CENTER);
     }
     public void setScore(int score){ scoreLabel.setText("Score: " + score); }
 
@@ -56,6 +74,18 @@ public class FightRoomPanel extends JPanel{
         messageLabel.setText("");
         healthLabel.setText("HP: " + Game.getInstance().player.getUserHealth());
         refresh();
+
+        String imageName = switch(currentEnemy.getName()){
+            case "Drone" -> "aiDrone.png";
+            case "Soldier" -> "aiSolider.png";
+            case "Commander" -> "aiCommander.png";
+            default -> null;
+        };
+        if(imageName != null){
+            Image scaled = new ImageIcon(getClass().getClassLoader().getResource(imageName)).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
+            
+            enemyImageLabel.setIcon(new ImageIcon(scaled));
+        }
     }
     
     private void takeTurn(CombatAction action){
@@ -68,7 +98,7 @@ public class FightRoomPanel extends JPanel{
                 case "Soldier" -> player.setCoinAmount(player.getCoinAmount() + 10);
                 case "Commander" -> player.setCoinAmount(player.getCoinAmount() + 20);
             }
-            GameWindow.instance.switchTo("ROOM END");
+            GameWindow.instance.switchTo("ENEMY ROOM END");
             return;
         }
 

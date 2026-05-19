@@ -13,6 +13,7 @@ public class GameWindow extends JFrame{
     private HealRoomPanel healRoomPanel = new HealRoomPanel();
     private RoomEndGUI roomEndPanel = new RoomEndGUI();
     private GameOverPanel gameOverPanel = new GameOverPanel();
+    private RoomEndEnemyGUI enemyRoomEndPanel = new RoomEndEnemyGUI();
 
     public GameWindow(){
         instance = this;
@@ -28,6 +29,7 @@ public class GameWindow extends JFrame{
         cardPanel.add(fightRoomPanel, "FIGHT");
         cardPanel.add(healRoomPanel, "HEAL");
         cardPanel.add(gameOverPanel, "GAME OVER");
+        cardPanel.add(enemyRoomEndPanel,"ENEMY ROOM END" );
 
         add(cardPanel);
         switchTo("START");
