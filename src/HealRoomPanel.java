@@ -4,20 +4,33 @@ import java.awt.*;
 public class HealRoomPanel extends JPanel{
     private JLabel statusLabel= new JLabel();
     private JLabel scoreLabel = new JLabel("Score: 0");
+    private Image drinkRawImage;
+    private Image foodRawImage;
+    private JLabel drinkImageLabel = new JLabel();
+    private JLabel foodImageLabel = new JLabel();
 
     public HealRoomPanel(){
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setLayout(new BorderLayout());
         setBackground(Color.BLACK);
         setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
+
+        
+        drinkRawImage = new ImageIcon(getClass().getClassLoader().getResource("drink.png")).getImage();
+        foodRawImage = new ImageIcon(getClass().getClassLoader().getResource("food.png")).getImage();
+
+        addComponentListener(new java.awt.event.ComponentAdapter(){
+            @Override
+            public void componentResized(java.awt.event.ComponentEvent e){
+                rescaleImages();
+            }
+        });
 
         scoreLabel.setFont(new Font("SansSerif", Font.BOLD, 13));
         scoreLabel.setForeground(Color.CYAN);
         JPanel topRow = new JPanel(new BorderLayout());
         topRow.setBackground(Color.BLACK);
-        topRow.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
         topRow.add(scoreLabel, BorderLayout.EAST);
-        add(topRow);
-        add(Box.createVerticalStrut(10));
+        add(topRow, BorderLayout.NORTH);
 
         JLabel title = new JLabel("HEAL ROOM");
         title.setFont(new Font("SansSerif", Font.BOLD, 18));
@@ -41,7 +54,6 @@ public class HealRoomPanel extends JPanel{
         }
         foodButton.addActionListener(e -> {
             Player player = Game.getInstance().player;
-            
             food f = new food();
             if(player.getUserHealth() == player.getMaxHealth()){
                 statusLabel.setText("You are full health already");
@@ -65,20 +77,31 @@ public class HealRoomPanel extends JPanel{
             }
             else{
                 d.heal(player);
-                    statusLabel.setText("You drank. HP: "+player.getUserHealth());  
+                statusLabel.setText("You drank. HP: "+player.getUserHealth());  
             }
         });
         continueButton.addActionListener(e -> GameWindow.instance.switchTo("ROOM END"));
+
+        JPanel centrePanel = new JPanel();
+        centrePanel.setLayout(new BoxLayout(centrePanel, BoxLayout.Y_AXIS));
+
+        centrePanel.setBackground(Color.BLACK);
+        centrePanel.add(Box.createVerticalGlue());
+        centrePanel.add(title);
+        centrePanel.add(Box.createVerticalStrut(20));
+        centrePanel.add(statusLabel);
+        centrePanel.add(Box.createVerticalStrut(15));
+        centrePanel.add(foodButton);
+        centrePanel.add(Box.createVerticalStrut(10));
+        centrePanel.add(drinkButton);
+        centrePanel.add(Box.createVerticalStrut(10));
+        centrePanel.add(continueButton);
+        centrePanel.add(Box.createVerticalGlue());
+
+        add(centrePanel, BorderLayout.CENTER);
         //vertical strut creates a vertical gap between each label/button
-        add(title);
-        add(Box.createVerticalStrut(20));
-        add(statusLabel);
-        add(Box.createVerticalStrut(15));
-        add(foodButton);
-        add(Box.createVerticalStrut(10));
-        add(drinkButton);
-        add(Box.createVerticalStrut(10));
-        add(continueButton);
+        add(drinkImageLabel, BorderLayout.WEST);
+        add(foodImageLabel, BorderLayout.EAST);
     }
 
     public void setScore(int score){ 
@@ -88,6 +111,16 @@ public class HealRoomPanel extends JPanel{
     public void loadRoom(HealRoom room){
         Player player = Game.getInstance().player;
         statusLabel.setText("HP: "+ player.getUserHealth() + " | Coins: "+ player.getCoinAmount());
+    }
+
+    //function to change image size
+    private void rescaleImages(){
+        //fixed size for images which is set to be relative to window size
+        int size = Math.max(50, getHeight() / 3);
+        if(drinkRawImage != null)
+            drinkImageLabel.setIcon(new ImageIcon(drinkRawImage.getScaledInstance(size, size, Image.SCALE_SMOOTH)));
+        if(foodRawImage != null)
+            foodImageLabel.setIcon(new ImageIcon(foodRawImage.getScaledInstance(size, size, Image.SCALE_SMOOTH)));
     }
 
 }

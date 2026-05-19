@@ -92,12 +92,16 @@ public class startMenuGUI extends JPanel{
 
             //takes difficulty selection
             this.userName = name;
-            if (easyButton.isSelected()) this.difficulty = 1;
-            else if (mediumButton.isSelected()) this.difficulty = 2;
-            else if (hardButton.isSelected()) this.difficulty = 3;
- 
+            if (easyButton.isSelected()){
+                this.difficulty = 1;
+            } 
+            else if (mediumButton.isSelected()){
+                this.difficulty = 2;
+            }     
+            else if (hardButton.isSelected()){
+                this.difficulty = 3;
+            } 
             Game.getInstance().gameStart(userName, difficulty);
-
         });
         //create button event handling for qutting the game button
         quitButton.addActionListener(e -> {

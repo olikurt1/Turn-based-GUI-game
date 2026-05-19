@@ -6,6 +6,7 @@ public abstract class Enemy{
     
 
     public Enemy(String name, double health, double damagePlacehold){
+        //setting stats based off of difficulty set by player
         int difficulty = Game.getInstance().getDifficulty();
         this.enemyWeapon = WeaponFactory.createWeapon();
         this.name = name;
