@@ -66,7 +66,7 @@ public class FightRoomPanel extends JPanel{
         styleButton(attackButton, new Color(0, 150, 0));
         styleButton(dodgeButton, new Color(0, 0, 150));
         styleButton(inventoryButton, Color.CYAN);
-
+        //button actions
         attackButton.addActionListener(e -> takeTurn(new AttackAction()));
         dodgeButton.addActionListener(e -> takeTurn(new DodgeAction()));
         inventoryButton.addActionListener(e -> GameWindow.instance.switchTo("INVENTORY"));
@@ -149,6 +149,7 @@ public class FightRoomPanel extends JPanel{
         if(enemyRawImage != null)
             enemyImageLabel.setIcon(new ImageIcon(enemyRawImage.getScaledInstance(size, size, Image.SCALE_SMOOTH)));
     }
+    //common button styling
     private void styleButton(JButton button, Color background){
         button.setFont(new Font("SansSerif", Font.BOLD, 14));
         button.setBackground(background);
