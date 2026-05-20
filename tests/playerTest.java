@@ -16,7 +16,7 @@ public class playerTest{
     @Test
     void testUserNameStored(){
         Player player = new Player("TestUser", 100, 0, new Melee(), 0);
-        assertEquals("TestUser", player.getUserHealth());
+        assertEquals("TestUser", player.getUserName());
     }
     @Test
     void testPlayerWeaponTypeIsRetrieved(){
