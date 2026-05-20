@@ -11,6 +11,7 @@ public class aiSoldier extends Enemy{
             }
             case 1 -> { return this.name+" missed, take your chance!!!"; }
         }
+        //base case
         return "";
     }
 }
