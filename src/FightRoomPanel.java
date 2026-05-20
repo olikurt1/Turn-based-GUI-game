@@ -62,16 +62,20 @@ public class FightRoomPanel extends JPanel{
         }
         JButton attackButton = new JButton("ATTACK");
         JButton dodgeButton = new JButton("DODGE");
+        JButton inventoryButton = new JButton("INVENTORY");
         styleButton(attackButton, new Color(0, 150, 0));
         styleButton(dodgeButton, new Color(0, 0, 150));
+        styleButton(inventoryButton, Color.CYAN);
 
         attackButton.addActionListener(e -> takeTurn(new AttackAction()));
         dodgeButton.addActionListener(e -> takeTurn(new DodgeAction()));
+        inventoryButton.addActionListener(e -> GameWindow.instance.switchTo("INVENTORY"));
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 0));
         buttonPanel.setBackground(Color.BLACK);
         buttonPanel.add(attackButton);
         buttonPanel.add(dodgeButton);
+        buttonPanel.add(inventoryButton);
         centrePanel.add(buttonPanel);
 
         add(centrePanel, BorderLayout.CENTER);

@@ -7,5 +7,8 @@ public abstract class Healable{
         this.cost = cost;
     }
 
+    public int getCost(){ 
+        return cost; 
+    }
     public abstract void heal(Player player);
 }

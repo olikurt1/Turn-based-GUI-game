@@ -52,7 +52,4 @@ public class playerTest{
         Player player = new Player("TestUser", 100, 0, new Melee(), 0);
         assertEquals(0, player.getCoinAmount());
     }
-
-
-
 }

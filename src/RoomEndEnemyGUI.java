@@ -25,20 +25,13 @@ public class RoomEndEnemyGUI extends JPanel{
         buttonPanel.setBackground(Color.BLACK);
 
         JButton continueButton = new JButton("CONTINUE");
-        continueButton.setFont(new Font("SansSerif", Font.BOLD, 14));
-        continueButton.setBackground(Color.CYAN);
-        continueButton.setForeground(Color.BLUE);
-        continueButton.setFocusPainted(false);
-        continueButton.setOpaque(true);
-        continueButton.setBorderPainted(false);
+        styleButton(continueButton);
 
         JButton pauseButton = new JButton("PAUSE");
-        pauseButton.setFont(new Font("SansSerif", Font.BOLD, 14));
-        pauseButton.setBackground(Color.CYAN);
-        pauseButton.setForeground(Color.BLUE);
-        pauseButton.setFocusPainted(false);
-        pauseButton.setOpaque(true);
-        pauseButton.setBorderPainted(false);
+        styleButton(pauseButton);
+
+        JButton inventoryButton = new JButton("INVENTORY");
+        styleButton(inventoryButton);
 
         continueButton.addActionListener(e -> {
             Game.getInstance().startNextRoom();
@@ -49,6 +42,7 @@ public class RoomEndEnemyGUI extends JPanel{
 
         buttonPanel.add(continueButton);
         buttonPanel.add(pauseButton);
+        buttonPanel.add(inventoryButton);
 
         endPanel.add(informLabel);
         endPanel.add(Box.createVerticalStrut(10));
@@ -70,5 +64,16 @@ public class RoomEndEnemyGUI extends JPanel{
         add(endPanel, BorderLayout.CENTER);
     }
 
-    public void setScore(int score){ scoreLabel.setText("Score: " + score); }
+    public void setScore(int score){ 
+        scoreLabel.setText("Score: " + score); 
+    }
+
+    private void styleButton(JButton button){
+        button.setFont(new Font("SansSerif", Font.BOLD, 14));
+        button.setBackground(Color.CYAN);
+        button.setForeground(Color.BLUE);
+        button.setFocusPainted(false);
+        button.setOpaque(true);
+        button.setBorderPainted(false);
+    }
 }

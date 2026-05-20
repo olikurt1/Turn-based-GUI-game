@@ -6,6 +6,8 @@ public class Player{
     private Weapon playerWeapon;
     private int Score;
     private int maxHealth;
+    private int foodCount;
+    private int drinkCount;
 
     public Player(String userName, int userHealth, int coins, Weapon playerWeapon, int Score){
         this.userName = userName;
@@ -64,6 +66,19 @@ public class Player{
         }
         return "";
     }
+    public int getFoodCount(){ 
+        return foodCount; 
+    }
+    public void setFoodCount(int foodCount){ 
+        this.foodCount = foodCount; 
+    }
+    public int getDrinkCount(){ 
+        return drinkCount; 
+    }
+    public void setDrinkCount(int drinkCount){ 
+        this.drinkCount = drinkCount; 
+    }
+
     //setter and getter for player score
     public int getPlayerScore(){
         return this.Score;
