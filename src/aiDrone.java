@@ -4,13 +4,16 @@ public class aiDrone extends Enemy{
 
     }
     public String attack(Player player){
-        int chanceOfAttack = (int)(Math.random()*2);
+        int chanceOfAttack = (int)(Math.random()*10);
         switch(chanceOfAttack){
-            case 0 -> {
+            //40% Chance of attack
+            case 0, 2, 4, 6 -> {
                 player.setUserHealth((int)(player.getUserHealth()-damagePlacehold));
-                return this.name+" attacked you with a "+this.enemyWeapon.getWeaponType()+" for "+String.format("%.1f", damagePlacehold);
+                return this.name+" attacked you with a "+this.enemyWeapon.getWeaponType()+" for "+String.format("%.0f", damagePlacehold);
             }
-            case 1 -> { return this.name+" missed, take your chance!!!"; }
+            case 1, 3, 5, 7, 8, 9 -> { 
+                return this.name+" missed, take your chance!!!"; 
+            }
         }
         return "";
     }

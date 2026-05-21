@@ -5,7 +5,8 @@ public class FightRoomPanel extends JPanel{
     private JLabel enemyLabel = new JLabel();
     private JLabel enemyHpLabel = new JLabel();
     private JLabel CoinLabel = new JLabel();
-    private JLabel messageLabel = new JLabel();
+    private JLabel playerMessageLabel = new JLabel();
+    private JLabel enemyMessageLabel = new JLabel();
     private Enemy currentEnemy;
     private JLabel scoreLabel = new JLabel("Score: 0");
     private JLabel healthLabel = new JLabel("HP: -");
@@ -53,7 +54,7 @@ public class FightRoomPanel extends JPanel{
         centrePanel.add(topRow);
         centrePanel.add(Box.createVerticalStrut(10));
 
-        for(JLabel label : new JLabel[]{enemyLabel, enemyHpLabel, CoinLabel, messageLabel}){
+        for(JLabel label : new JLabel[]{enemyLabel, enemyHpLabel, CoinLabel, playerMessageLabel, enemyMessageLabel}){
             label.setForeground(Color.CYAN);
             label.setFont(new Font("SansSerif", Font.BOLD, 14));
             label.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -84,7 +85,7 @@ public class FightRoomPanel extends JPanel{
 
     public void loadRoom(FightRoom room){
         currentEnemy = EnemyFactory.createEnemy();
-        messageLabel.setText("");
+        playerMessageLabel.setText("");
         healthLabel.setText("HP: " + Game.getInstance().player.getUserHealth());
         refresh();
         //sets enemy image based on the current enemies name
@@ -116,13 +117,10 @@ public class FightRoomPanel extends JPanel{
         }
         //stores the enemy attacking function which does its void functionality but returns the notification of event into the enemyMsg String variable
         String enemyMsg = currentEnemy.attack(player);
-        messageLabel.setText(playerMsg);
-        //Thread.sleep but for swing ui to ensure messages are seen
-        javax.swing.Timer timer = new javax.swing.Timer(3000, e ->{
-            messageLabel.setText(enemyMsg);
-        });
-        timer.setRepeats(false);
-        timer.start();
+        playerMessageLabel.setText(playerMsg);
+
+        enemyMessageLabel.setText(enemyMsg);
+
         
         //if player dies set window scene to game over
         if (player.getUserHealth() <= 0){
