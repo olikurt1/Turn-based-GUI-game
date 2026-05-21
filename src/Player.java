@@ -49,14 +49,18 @@ public class Player{
         return maxHealth;
     }
     //functions for player to attack or dodge
-    void playerAttack(Enemy e){
+    String playerAttack(Enemy e){
         int hitOrMiss = (int)(Math.random()*2);
         switch(hitOrMiss){
-            case 0 -> {}
+            case 0 -> {
+                return "You attacked "+e.getName()+" but missed.";
+            }
             case 1 -> {
-                e.setEnemyHealth(e.getEnemyHealth()-getPlayerWeapon().getDamage());  
+                e.setEnemyHealth(e.getEnemyHealth()-getPlayerWeapon().getDamage()); 
+                return "You attacked the " + e.getName() + " with a " +getPlayerWeapon().getWeaponType()+"!";
             }
         }
+        return "";
     }
     String playerDodge(Enemy e){
         int dodgeOrNo = (int)(Math.random()*2);
