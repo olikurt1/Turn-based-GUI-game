@@ -39,6 +39,9 @@ public class RoomEndEnemyGUI extends JPanel{
         pauseButton.addActionListener(e -> {
             GameWindow.instance.switchTo("PAUSE");
         });
+        inventoryButton.addActionListener(e ->{
+            GameWindow.instance.switchTo("INVENTORY");
+        });
 
         buttonPanel.add(continueButton);
         buttonPanel.add(pauseButton);

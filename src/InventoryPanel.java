@@ -40,27 +40,37 @@ public class InventoryPanel extends JPanel {
         });
         FoodButton.addActionListener(e -> {
             Player player = Game.getInstance().player;
-            if(player.getFoodCount() > 0){
-                food food = new food();
-                player.setUserHealth(player.getUserHealth()+food.amountToHeal);
-                player.setFoodCount(player.getFoodCount()-1);
+            if(player.getUserHealth() == player.getMaxHealth()){
+                messageLabel.setText("You are full health.");
             }
             else{
-                messageLabel.setText("You haven't got enough food.");
+                if(player.getFoodCount() > 0){
+                    food food = new food();
+                    player.setUserHealth(player.getUserHealth()+food.amountToHeal);
+                    player.setFoodCount(player.getFoodCount()-1);
+                }
+                else{
+                    messageLabel.setText("You haven't got enough food.");
+                }
             }
-
             refresh(player);
         });
         DrinkButton.addActionListener(e -> {
             Player player = Game.getInstance().player;
-            if(player.getDrinkCount()>0){
-                drink drink = new drink();
-                player.setUserHealth(player.getUserHealth()+drink.amountToHeal);
-                player.setDrinkCount(player.getDrinkCount()-1);
+            if(player.getUserHealth() == player.getMaxHealth()){
+                messageLabel.setText("You are full health");
             }
             else{
+                if(player.getDrinkCount()>0){
+                    drink drink = new drink();
+                    player.setUserHealth(player.getUserHealth()+drink.amountToHeal);
+                    player.setDrinkCount(player.getDrinkCount()-1);
+                }
+            else{
                 messageLabel.setText("You haven't got enough drink");
+                }
             }
+
             refresh(player);
         });
 

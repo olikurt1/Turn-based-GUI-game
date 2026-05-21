@@ -47,7 +47,8 @@ public class PauseMenuGUI extends JPanel{
         quitButton.setBorderPainted(false);
         //providing functionality to the buttons
         resumeButton.addActionListener(e -> {
-            GameWindow.instance.switchTo("ROOM END");
+            String previousScene = GameWindow.instance.getPreviousScene();
+            GameWindow.instance.switchTo(previousScene != null ? previousScene : "ROOM END");
         });
 
         quitButton.addActionListener(e -> {

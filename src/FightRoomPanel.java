@@ -91,7 +91,7 @@ public class FightRoomPanel extends JPanel{
         //sets enemy image based on the current enemies name
         String imageName = switch(currentEnemy.getName()){
             case "Drone" -> "aiDrone.png";
-            case "Soldier" -> "aiSolider.png";
+            case "Soldier" -> "aiSoldier.png";
             case "Commander" -> "aiCommander.png";
             default -> null;
         };
