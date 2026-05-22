@@ -48,6 +48,9 @@ public class Player{
     public int getMaxHealth(){
         return maxHealth;
     }
+    public void setMaxHealth(int maxHealth){
+        this.maxHealth = maxHealth;
+    }
     //functions for player to attack or dodge
     String playerAttack(Enemy e){
         int hitOrMiss = (int)(Math.random()*2);

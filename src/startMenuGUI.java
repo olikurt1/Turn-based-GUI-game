@@ -71,6 +71,14 @@ public class startMenuGUI extends JPanel{
         startButton.setOpaque(true);
         startButton.setBorderPainted(false);
 
+        JButton loadButton = new JButton("LOAD GAME");
+        loadButton.setFont(new Font("SansSerif", Font.BOLD, 14));
+        loadButton.setBackground(new Color(0, 100, 150));
+        loadButton.setForeground(Color.WHITE);
+        loadButton.setFocusPainted(false);
+        loadButton.setOpaque(true);
+        loadButton.setBorderPainted(false);
+
         JButton quitButton = new JButton("QUIT");
         quitButton.setFont(new Font("SansSerif", Font.BOLD, 14));
         quitButton.setBackground(new Color(150, 0, 0));
@@ -92,13 +100,13 @@ public class startMenuGUI extends JPanel{
             this.userName = name;
             if (easyButton.isSelected()){
                 this.difficulty = 1;
-            } 
+            }
             else if (mediumButton.isSelected()){
                 this.difficulty = 2;
-            }     
+            }
             else if (hardButton.isSelected()){
                 this.difficulty = 3;
-            } 
+            }
             Game.getInstance().gameStart(userName, difficulty);
         });
         //create button event handling for qutting the game button
@@ -107,6 +115,7 @@ public class startMenuGUI extends JPanel{
         });
 
         buttonPanel.add(startButton);
+        buttonPanel.add(loadButton);
         buttonPanel.add(quitButton);
 
         mainPanel.add(titleLabel);

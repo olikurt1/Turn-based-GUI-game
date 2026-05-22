@@ -122,7 +122,7 @@ public class FightRoomPanel extends JPanel{
         enemyMessageLabel.setText(enemyMsg);
 
         
-        //if player dies set window scene to game over
+
         if (player.getUserHealth() <= 0){
             GameWindow.instance.switchTo("GAME OVER");
             return;
