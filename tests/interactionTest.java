@@ -49,4 +49,35 @@ public class interactionTest{
         new food().heal(player);
         assertEquals(70, player.getCoinAmount());
         }
+    @Test
+    void testLoadAndSaveData(){
+        //initialising objects to save
+        Game game = Game.getInstance();
+        game.setDifficulty(2);
+        Player original = new Player("TestSave", 75, 50, new Pistol(), 3);
+        original.setMaxHealth(75);
+        original.setFoodCount(2);
+        original.setDrinkCount(1);
+        game.player = original;
+        
+        //saving instances
+        SaveManager.save();
+
+        //wiping objects
+        game.player = null;
+        game.setDifficulty(0);
+
+        //load saved data and verify with assertions
+        assertTrue(SaveManager.load()); //checks that load returns true
+        Player loaded = game.player;
+        assertEquals("TestSave", loaded.getUserName());
+        assertEquals(75, loaded.getUserHealth());
+        assertEquals(50, loaded.getCoinAmount());
+        assertEquals(3, loaded.getPlayerScore());
+        assertEquals(2, loaded.getFoodCount());
+        assertEquals(1, loaded.getDrinkCount());
+        assertEquals(2, game.getDifficulty());
+        assertInstanceOf(Pistol.class, loaded.getPlayerWeapon());
+
+    }
 }
