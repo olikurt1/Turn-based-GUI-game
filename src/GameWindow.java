@@ -20,7 +20,7 @@ public class GameWindow extends JFrame{
     public GameWindow(){
         instance = this;
         //structuring window
-        setTitle("AI Game");
+        setTitle("AI TAKEOVER GAME");
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -50,7 +50,9 @@ public class GameWindow extends JFrame{
             roomEndPanel.setScore(score);
             gameOverPanel.setScore(score);
         }
-        if (!scene.equals("INVENTORY")) previousScene = scene;
+        if (!scene.equals("INVENTORY") && !scene.equals("PAUSE")) {
+            previousScene = scene;
+        }    
         //refreshes the inventory panel to reflect current player data
         if (scene.equals("INVENTORY") && Game.getInstance().player != null){
             inventoryPanel.refresh(Game.getInstance().player);

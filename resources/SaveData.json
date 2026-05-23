@@ -1,0 +1,11 @@
+{
+    "userName": "ollie",
+    "userHealth": "66",
+    "maxHealth": "100",
+    "coins": "60",
+    "score": "4",
+    "foodCount": "0",
+    "drinkCount": "1",
+    "weaponType": "Rifle",
+    "difficulty": "1"
+}

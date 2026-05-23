@@ -4,7 +4,12 @@ public class drink extends Healable{
     }
 
     public void heal(Player player){
-        player.setUserHealth(player.getUserHealth()+this.amountToHeal);
+        if(player.getMaxHealth() - player.getUserHealth() < this.amountToHeal){
+            player.setUserHealth(player.getMaxHealth());
+        }
+        else{
+            player.setUserHealth(player.getUserHealth()+this.amountToHeal);
+        }
         player.setCoinAmount(player.getCoinAmount()-this.cost);  
     }
     public int getDrinkCost(){

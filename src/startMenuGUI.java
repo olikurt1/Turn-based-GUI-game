@@ -5,14 +5,6 @@ import java.awt.*;
 public class startMenuGUI extends JPanel{
     private String userName;
     private int difficulty;
-    private static startMenuGUI instance = null;
-
-    public static startMenuGUI getInstance(){
-        if(instance == null){
-            instance = new startMenuGUI();
-        } 
-        return instance;
-    }
 
     public startMenuGUI(){
         //creating window overlay
@@ -64,29 +56,18 @@ public class startMenuGUI extends JPanel{
         buttonPanel.setBackground(Color.BLACK);
 
         JButton startButton = new JButton("START GAME");
-        startButton.setFont(new Font("SansSerif", Font.BOLD, 14));
         startButton.setBackground(new Color(0, 150, 0));
-        startButton.setForeground(Color.WHITE);
-        startButton.setFocusPainted(false);
-        startButton.setOpaque(true);
-        startButton.setBorderPainted(false);
-        /* 
-        JButton loadButton = new JButton("LOAD GAME");
-        loadButton.setFont(new Font("SansSerif", Font.BOLD, 14));
-        loadButton.setBackground(new Color(0, 100, 150));
-        loadButton.setForeground(Color.WHITE);
-        loadButton.setFocusPainted(false);
-        loadButton.setOpaque(true);
-        loadButton.setBorderPainted(false);
-        */
+        styleButton(startButton);
 
+        JButton loadButton = new JButton("LOAD GAME");
+        loadButton.setBackground(new Color(0, 100, 150));
+        styleButton(loadButton);
+
+        
         JButton quitButton = new JButton("QUIT");
-        quitButton.setFont(new Font("SansSerif", Font.BOLD, 14));
         quitButton.setBackground(new Color(150, 0, 0));
-        quitButton.setForeground(Color.WHITE);
-        quitButton.setFocusPainted(false);
-        quitButton.setOpaque(true);
-        quitButton.setBorderPainted(false);
+        styleButton(quitButton);
+
 
         //create button event handling for when start game button is pressed
         startButton.addActionListener(e -> {
@@ -114,9 +95,29 @@ public class startMenuGUI extends JPanel{
         quitButton.addActionListener(e -> {
             System.exit(0);
         });
+        //load button 
+        loadButton.addActionListener(e ->{
+            //ensures save file exists
+            if (!SaveManager.saveExists()){
+                JOptionPane.showMessageDialog(this, "No save file found");
+                return;
+            }
+            //checks that save data file isn't empty first
+            if(SaveManager.saveIsEmpty()){
+                JOptionPane.showMessageDialog(this, "Save file is empty please START a game");
+                return;
+            }
+            //checks that loading works
+            boolean saveFileLoaded = SaveManager.load();
+            if(!saveFileLoaded){
+                JOptionPane.showMessageDialog(this, "Failed to load save");
+            }
+            Game.getInstance().startNextRoom();   
+            SaveManager.load();
+        });
 
         buttonPanel.add(startButton);
-        //buttonPanel.add(loadButton);
+        buttonPanel.add(loadButton);
         buttonPanel.add(quitButton);
 
         mainPanel.add(titleLabel);
@@ -133,5 +134,12 @@ public class startMenuGUI extends JPanel{
 
         setLayout(new BorderLayout());
         add(mainPanel, BorderLayout.CENTER);
+    }
+    private void styleButton(JButton button){
+        button.setFont(new Font("SansSerif", Font.BOLD, 14));
+        button.setForeground(Color.WHITE);
+        button.setFocusPainted(false);
+        button.setOpaque(true);
+        button.setBorderPainted(false);
     }
 }
