@@ -112,6 +112,11 @@ public class FightRoomPanel extends JPanel{
                 case "Soldier" -> player.setCoinAmount(player.getCoinAmount() + 10);
                 case "Commander" -> player.setCoinAmount(player.getCoinAmount() + 20);
             }
+            //setting player's weapon to current enemies weapon as long as its a better weapon
+            Weapon enemyWeapon = currentEnemy.getEnemyWeapon();
+            if (enemyWeapon.getDamage() > player.getPlayerWeapon().getDamage()) {
+                player.setPlayerWeapon(enemyWeapon);
+            }
             GameWindow.instance.switchTo("ENEMY ROOM END");
             return;
         }

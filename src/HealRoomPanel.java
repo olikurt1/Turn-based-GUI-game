@@ -19,6 +19,7 @@ public class HealRoomPanel extends JPanel{
         foodRawImage = new ImageIcon(getClass().getClassLoader().getResource("food.png")).getImage();
         //listener for images to resize dynamically with window
         addComponentListener(new java.awt.event.ComponentAdapter(){
+            //overrides original function to use the custom image rescaling
             @Override
             public void componentResized(java.awt.event.ComponentEvent e){
                 rescaleImages();
@@ -108,7 +109,7 @@ public class HealRoomPanel extends JPanel{
         }
 
         String[] options = {"CONSUME", "ADD TO INVENTORY", "CANCEL"};
-        //opens pop up
+        //opens pop up to choose what to do with healable purchase
         int choice = JOptionPane.showOptionDialog(
             this,itemName + " costs " + cost + " coins. What would you like to do?",
             itemName.toUpperCase(),
@@ -140,7 +141,7 @@ public class HealRoomPanel extends JPanel{
 
     //function to change image size
     private void rescaleImages(){
-        //fixed size for images which is set to be relative to window size
+        //size for images which is set to be relative to window size
         int size = Math.max(50, getHeight() / 3);
         if(drinkRawImage != null)
             drinkImageLabel.setIcon(new ImageIcon(drinkRawImage.getScaledInstance(size, size, Image.SCALE_SMOOTH)));

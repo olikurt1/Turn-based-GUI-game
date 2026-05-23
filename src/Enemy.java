@@ -8,8 +8,15 @@ public abstract class Enemy{
     public Enemy(String name, double health, double damagePlacehold){
         //setting stats based off of difficulty set by player
         int difficulty = Game.getInstance().getDifficulty();
-        this.enemyWeapon = WeaponFactory.createWeapon();
         this.name = name;
+        switch(name){
+            case "Drone" -> this.enemyWeapon = WeaponFactory.createWeapon(0);
+
+            case "Soldier" -> this.enemyWeapon = WeaponFactory.createWeapon(1);
+
+            case "Commander" -> this.enemyWeapon = WeaponFactory.createWeapon(2);
+        }
+        
         switch(difficulty){
             case 1 ->{
                 this.health = health*0.5;
@@ -26,7 +33,7 @@ public abstract class Enemy{
         }
         
     }
-
+    //inherited attack method abstracted to allow flexibility for the other classes that use it
     public abstract String attack(Player player);
 
     public String getName(){

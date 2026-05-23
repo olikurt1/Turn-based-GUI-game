@@ -50,7 +50,7 @@ public class startMenuGUI extends JPanel{
         JRadioButton easyButton = new JRadioButton("Easy");
         JRadioButton mediumButton = new JRadioButton("Medium");
         JRadioButton hardButton = new JRadioButton("Hard");
-
+        //difficulty buttons are identical so can set using loop
         for(JRadioButton button : new JRadioButton[]{easyButton, mediumButton, hardButton}){
             button.setForeground(Color.CYAN);
             button.setBackground(Color.BLACK);
@@ -70,7 +70,7 @@ public class startMenuGUI extends JPanel{
         startButton.setFocusPainted(false);
         startButton.setOpaque(true);
         startButton.setBorderPainted(false);
-
+        /* 
         JButton loadButton = new JButton("LOAD GAME");
         loadButton.setFont(new Font("SansSerif", Font.BOLD, 14));
         loadButton.setBackground(new Color(0, 100, 150));
@@ -78,6 +78,7 @@ public class startMenuGUI extends JPanel{
         loadButton.setFocusPainted(false);
         loadButton.setOpaque(true);
         loadButton.setBorderPainted(false);
+        */
 
         JButton quitButton = new JButton("QUIT");
         quitButton.setFont(new Font("SansSerif", Font.BOLD, 14));
@@ -115,7 +116,7 @@ public class startMenuGUI extends JPanel{
         });
 
         buttonPanel.add(startButton);
-        buttonPanel.add(loadButton);
+        //buttonPanel.add(loadButton);
         buttonPanel.add(quitButton);
 
         mainPanel.add(titleLabel);

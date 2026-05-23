@@ -31,7 +31,8 @@ public class InventoryPanel extends JPanel {
         styleButton(FoodButton);
         JButton DrinkButton = new JButton("USE DRINK");
         styleButton(DrinkButton);
-
+        
+        //button actions for inventory
         returnButton.addActionListener(e -> {
             String previousScene = GameWindow.instance.getPreviousScene();
             if (previousScene != null) {
@@ -118,6 +119,7 @@ public class InventoryPanel extends JPanel {
         button.setBackground(Color.CYAN);
         button.setForeground(Color.BLUE);
         button.setFocusPainted(false);
+        button.setBorderPainted(false);
         button.setOpaque(true);
         button.setAlignmentX(Component.CENTER_ALIGNMENT);
     }
