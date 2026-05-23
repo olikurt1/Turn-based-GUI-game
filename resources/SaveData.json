@@ -1,11 +1,11 @@
 {
-    "userName": "ollie",
-    "userHealth": "66",
-    "maxHealth": "100",
-    "coins": "60",
-    "score": "4",
-    "foodCount": "0",
+    "userName": "TestSave",
+    "userHealth": "75",
+    "maxHealth": "75",
+    "coins": "50",
+    "score": "3",
+    "foodCount": "2",
     "drinkCount": "1",
-    "weaponType": "Rifle",
-    "difficulty": "1"
+    "weaponType": "Pistol",
+    "difficulty": "2"
 }

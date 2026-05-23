@@ -39,6 +39,7 @@ public class interactionTest{
     //test food heal function
     void testFoodHealFuncOnPlayer(){
         Player player = new Player("TestUser", 50, 100, new Melee(), 0);
+        player.setMaxHealth(100);
         new food().heal(player);
         assertEquals(100, player.getUserHealth());
     }
@@ -46,6 +47,7 @@ public class interactionTest{
     //test food deducts coins from player after heal
     void testFoodHealTakesCoins(){
         Player player = new Player("TestUser", 50, 100, new Melee(), 0);
+        player.setMaxHealth(100);
         new food().heal(player);
         assertEquals(70, player.getCoinAmount());
         }
