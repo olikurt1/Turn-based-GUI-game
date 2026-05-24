@@ -78,4 +78,4 @@ This project allowed me to experience how AI tools can be used to assist and opt
 
 Tests are logged in test-results.txt
 
-Project URL: [link text](https://csgitlab.reading.ac.uk/az003784/cs1op-textgame)
+Project URL: [Project](https://csgitlab.reading.ac.uk/az003784/cs1op-textgame)
