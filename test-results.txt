@@ -1,0 +1,40 @@
+Test Results - 2026-05-23
+========================================
+Total: 19 tests | Passed: 19 | Failed: 0
+========================================
+
+--- playerTest (8 tests) ---
+
+  testPlayerInitialHealth          PASS  assertEquals(100, player.getUserHealth())
+  testUserNameStored               PASS  assertEquals("TestUser", player.getUserName())
+  testPlayerWeaponTypeIsRetrieved  PASS  assertEquals("Rifle", player.getPlayerWeapon().getWeaponType())
+  testPlayerHealthSetter           PASS  assertEquals(60, player.getUserHealth())
+  testPlayerScoreSetter            PASS  assertEquals(5, player.getPlayerScore())
+  testMaxHealthIsInitialHealth     PASS  assertEquals(100, player.getMaxHealth())
+  testPlayerCoinsUpdate            PASS  assertEquals(5, player.getCoinAmount())
+  testInitialPlayerCoins           PASS  assertEquals(0, player.getCoinAmount())
+
+--- enemyTest (5 tests) ---
+
+  testSoldierHealthAtEasyDifficulty          PASS  assertEquals(15.0, new aiSoldier().getEnemyHealth())
+  testEnemyHasWeaponEquipped                 PASS  assertNotNull(enemy.getEnemyWeapon().getWeaponType())
+  testEnemyAttackDoesntIncreasePlayerHealth  PASS  assertTrue(player.getUserHealth() <= healthBefore)
+  testEnemyFactoryWorks                      PASS  assertNotNull(enemy.getName()), assertFalse(enemy.getName().isEmpty())
+  testEnemyFactoryReturnsEnemyInstance       PASS  assertInstanceOf(Enemy.class, EnemyFactory.createEnemy())
+
+--- interactionTest (6 tests) ---
+
+  testPlayerAttackNeverIncreasesEnemyHealth  PASS  assertTrue(enemy.getEnemyHealth() <= healthBefore)
+  testDodgeReturnsStringWithInfo             PASS  assertNotNull(msg), assertFalse(msg.isEmpty())
+  playerHealthTestAfterFightAction           PASS  assertTrue(player.getUserHealth() <= healthBeforeAction)
+  testFoodHealFuncOnPlayer                   PASS  assertEquals(100, player.getUserHealth())
+  testFoodHealTakesCoins                     PASS  assertEquals(70, player.getCoinAmount())
+  testLoadAndSaveData                        PASS  assertTrue(SaveManager.load()), assertEquals("TestSave", loaded.getUserName()), 
+                                                   assertEquals(75, loaded.getUserHealth()), assertEquals(50, loaded.getCoinAmount()), 
+                                                   assertEquals(3, loaded.getPlayerScore()), assertEquals(2, loaded.getFoodCount()), 
+                                                   assertEquals(1, loaded.getDrinkCount()), assertEquals(2, game.getDifficulty()), 
+                                                   assertInstanceOf(Pistol.class, loaded.getPlayerWeapon())
+
+========================================
+BUILD SUCCESS
+========================================
