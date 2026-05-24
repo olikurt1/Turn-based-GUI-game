@@ -1,3 +1,5 @@
+##AI Takeover Game
+
 The game featured in this repository is themed behind AI becoming physical in robotic form and having taking over the world. The player is one of the last humans left fighting against AI. 
 This is a turn based combat game which means the player decides whether they want the character to dodge or attack and a hardcoded probability of such decisions being successful means the player has to strategise on what the next best move is. The enemy always attacks and has a certain probability of missing based on the type of enemy it is. The player has a chance of missing when attacking. It is a survival mode game where the key objective is to rack up the highest score possible as rooms load indefinitely unless player leaves the game. 
 
