@@ -24,8 +24,7 @@ public class FightRoomPanel extends JPanel{
         //placing enemy image on the left 
         add(enemyImageLabel, BorderLayout.WEST);
 
-        //player image on right
-        playerRawImage = new ImageIcon(getClass().getClassLoader().getResource("player.png")).getImage();
+
         add(playerImageLabel, BorderLayout.EAST);
 
         //function using existing component listener from awt library but overriding resizing method with custom rescaleImages function
@@ -98,6 +97,10 @@ public class FightRoomPanel extends JPanel{
         //sets image but checks that name isn't null first
         if(imageName != null){
             enemyRawImage = new ImageIcon(getClass().getClassLoader().getResource(imageName)).getImage();
+
+            //player image on right
+            playerRawImage = new ImageIcon(getClass().getClassLoader().getResource("player.png")).getImage();
+            
             rescaleImages();
         }
     }

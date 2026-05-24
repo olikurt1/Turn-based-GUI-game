@@ -14,9 +14,13 @@ public class HealRoomPanel extends JPanel{
         setBackground(Color.BLACK);
         setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
 
+        add(drinkImageLabel, BorderLayout.WEST);
+        add(foodImageLabel, BorderLayout.EAST);
         //declaring the images for healables
         drinkRawImage = new ImageIcon(getClass().getClassLoader().getResource("drink.png")).getImage();
+        
         foodRawImage = new ImageIcon(getClass().getClassLoader().getResource("food.png")).getImage();
+        
         //listener for images to resize dynamically with window
         addComponentListener(new java.awt.event.ComponentAdapter(){
             //overrides original function to use the custom image rescaling
